@@ -1,10 +1,10 @@
 ---
 deployment:
   tasks:
-    - /bin/chmod -R ug+rwX /home4/mcied45x/repositories/C-Net-Computer-Education/storage /home4/mcied45x/repositories/C-Net-Computer-Education/bootstrap/cache
-    - /opt/cpanel/ea-php83/root/usr/bin/php /home4/mcied45x/repositories/C-Net-Computer-Education/artisan migrate --seed --force
-    - /opt/cpanel/ea-php83/root/usr/bin/php /home4/mcied45x/repositories/C-Net-Computer-Education/artisan optimize:clear
-    - /opt/cpanel/ea-php83/root/usr/bin/php /home4/mcied45x/repositories/C-Net-Computer-Education/artisan config:cache
-    - /opt/cpanel/ea-php83/root/usr/bin/php /home4/mcied45x/repositories/C-Net-Computer-Education/artisan view:cache
-    - /opt/cpanel/ea-php83/root/usr/bin/php /home4/mcied45x/repositories/C-Net-Computer-Education/artisan route:cache
-    - /opt/cpanel/ea-php83/root/usr/bin/php /home4/mcied45x/repositories/C-Net-Computer-Education/artisan route:list
+    - /bin/chmod -R ug+rwX /home4/mcied45x/repositories/Micro-Computer-Institute/storage /home4/mcied45x/repositories/Micro-Computer-Institute/bootstrap/cache
+    - /opt/cpanel/ea-php83/root/usr/bin/php /home4/mcied45x/repositories/Micro-Computer-Institute/artisan migrate --seed --force
+    - /opt/cpanel/ea-php83/root/usr/bin/php /home4/mcied45x/repositories/Micro-Computer-Institute/artisan optimize:clear
+    - /opt/cpanel/ea-php83/root/usr/bin/php /home4/mcied45x/repositories/Micro-Computer-Institute/artisan config:cache
+    - /opt/cpanel/ea-php83/root/usr/bin/php /home4/mcied45x/repositories/Micro-Computer-Institute/artisan view:cache
+    - /opt/cpanel/ea-php83/root/usr/bin/php /home4/mcied45x/repositories/Micro-Computer-Institute/artisan route:cache
+    - /opt/cpanel/ea-php83/root/usr/bin/php /home4/mcied45x/repositories/Micro-Computer-Institute/artisan route:list
