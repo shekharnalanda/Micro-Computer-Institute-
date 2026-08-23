@@ -47,3 +47,33 @@
 /* Course fee display */
 .course-fee{display:inline-flex;align-items:center;width:max-content;margin:9px 0 0;padding:7px 10px;border-radius:999px;background:#e7f7ee;color:#087548;font-size:12px;font-weight:900}
 .course-facts .fee-note{display:block;margin-top:6px;color:#6d7f8f;font-size:10px;font-weight:600;line-height:1.4}
+
+/* MCI signature visual system — intentionally distinct from the C-Net theme */
+:root{--ink:#101c4c;--blue:#145c38;--cyan:#16a46b;--lime:#f2c94c;--cream:#f7f8ef;--muted:#657067;--line:#dbe4d8;--mci-green:#07944f;--mci-navy:#211c70;--mci-gold:#f0c62d}
+body{background:#fffdf8;color:var(--ink);font-family:"Trebuchet MS",Arial,sans-serif}
+.site-header{height:94px;padding:0 clamp(20px,4vw,68px);background:#fffdf5f2;border-bottom:4px solid var(--mci-green);box-shadow:0 10px 30px #17234a10}
+.brand{gap:14px}.brand-logo{width:68px;height:68px;object-fit:contain;border-radius:50%;filter:drop-shadow(0 5px 9px #13225b24)}
+.brand strong{display:block;color:var(--mci-navy);font-family:Georgia,serif;font-size:19px;letter-spacing:.2px}.brand small{color:var(--mci-green);font-weight:900;letter-spacing:1.4px}
+.site-header nav{gap:18px}.site-header nav a{color:#27365f;font-size:12px}.site-header nav a:hover{color:var(--mci-green)}
+.pill,.primary,.contact-btn{background:linear-gradient(135deg,var(--mci-green),#08723f);box-shadow:0 10px 24px #07944f35}.site-header nav .admin-nav-link{background:var(--mci-navy)}
+.hero{min-height:690px;position:relative;background:radial-gradient(circle at 12% 12%,#fff7bd 0 7%,transparent 27%),linear-gradient(120deg,#fffdf3 0 55%,#e9f7ee 55% 100%)}
+.hero:before{content:"MCI";position:absolute;left:-22px;bottom:-48px;color:#07944f0a;font:900 250px/1 Georgia,serif;pointer-events:none}
+.hero-copy{position:relative;z-index:1}.eyebrow{display:inline-flex;align-items:center;padding:9px 13px;border:1px solid #b7ddc7;border-radius:4px;background:#fff;color:var(--mci-green)}
+.hero h1,.section h2{font-family:Georgia,"Times New Roman",serif;letter-spacing:-2.4px}.hero h1{color:var(--mci-navy)}.hero h1 em,.section h2 em{color:var(--mci-green);text-decoration:underline;text-decoration-color:var(--mci-gold);text-decoration-thickness:7px;text-underline-offset:6px}
+.hero-media{height:545px}.hero-media:before{content:"";position:absolute;inset:-18px 22px 22px -18px;border:3px solid var(--mci-gold);border-radius:160px 24px 160px 24px}
+.hero-media>img{position:relative;border:8px solid #fff;border-radius:160px 24px 160px 24px;box-shadow:0 30px 70px #17225b35}
+.float{border:1px solid #d8e6d7;border-radius:8px}.float.top{color:var(--mci-green)}.float.bottom{color:var(--mci-navy)}
+.proof{border-color:#bed8c5}.proof strong{color:var(--mci-navy);font-family:Georgia,serif;font-size:27px}
+.trust{background:linear-gradient(90deg,var(--mci-navy),#342b8f);border-top:5px solid var(--mci-gold)}.trust i{color:var(--mci-gold)}
+.kicker{color:var(--mci-green)}.filters button{border-radius:5px}.filters button.active{background:var(--mci-navy)}
+.course{border-radius:8px;border-top:5px solid var(--mci-green);background:#fff;box-shadow:0 8px 24px #14234f0c}.course:nth-child(3n+2){border-top-color:var(--mci-navy)}.course:nth-child(3n){border-top-color:var(--mci-gold)}.course-top span{border-radius:50%;background:#e8f6ed;color:var(--mci-green)}.course>a,.course-link{color:var(--mci-green)}
+.lab{background:linear-gradient(135deg,#f8f4dc,#edf7ef)}.lab-photo img{border-radius:120px 10px 120px 10px;border:8px solid #fff}.lab-photo>div{background:var(--mci-gold);color:var(--mci-navy);border-radius:4px}
+.jobs{background:linear-gradient(140deg,#17145a,#2f2782)}.job-intro h2 em{color:var(--mci-gold)}.job-panel{border-top:6px solid var(--mci-gold)}
+.admission-promo{border-radius:8px;background:linear-gradient(120deg,var(--mci-green),#075c38 58%,var(--mci-navy));border-bottom:6px solid var(--mci-gold)}
+.enquiry{background:#f5f8ee}.enquiry-wrap{border-radius:12px;overflow:hidden}.enquiry-copy{background:linear-gradient(150deg,var(--mci-navy),#332b8d)}
+.contact{background:linear-gradient(135deg,#075b38,#063d2a)}
+footer{background:#0f133d;border-top:6px solid var(--mci-gold)}.footer-logo{width:70px;height:70px;border-radius:50%;background:#fff}
+.admission-main{background:linear-gradient(120deg,var(--mci-navy) 0 40%,#eef7ef 40%)}.admission-intro{background:var(--mci-navy)}.admission-intro h1 em{color:var(--mci-gold)}.online-admission-form button{background:var(--mci-green)}
+.mobile-menu-toggle{border-color:#badbc5}.mobile-menu-toggle span{background:var(--mci-navy)}
+@media(max-width:1100px){.site-header nav{border-top:5px solid var(--mci-green)}.site-header nav a:hover,.site-header nav a:focus-visible{background:#edf8f0;color:var(--mci-green)}}
+@media(max-width:700px){.site-header{height:78px}.brand-logo{width:54px;height:54px}.brand strong{font-size:16px}.brand small{font-size:8px}.hero{background:linear-gradient(160deg,#fffdf3,#eaf7ee)}.hero-media:before{inset:-10px 10px 10px -10px}.hero-media>img{border-radius:80px 12px 80px 12px}.hero h1,.section h2{letter-spacing:-1.2px}}
