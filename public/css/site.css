@@ -77,3 +77,6 @@ footer{background:#0f133d;border-top:6px solid var(--mci-gold)}.footer-logo{widt
 .mobile-menu-toggle{border-color:#badbc5}.mobile-menu-toggle span{background:var(--mci-navy)}
 @media(max-width:1100px){.site-header nav{border-top:5px solid var(--mci-green)}.site-header nav a:hover,.site-header nav a:focus-visible{background:#edf8f0;color:var(--mci-green)}}
 @media(max-width:700px){.site-header{height:78px}.brand-logo{width:54px;height:54px}.brand strong{font-size:16px}.brand small{font-size:8px}.hero{background:linear-gradient(160deg,#fffdf3,#eaf7ee)}.hero-media:before{inset:-10px 10px 10px -10px}.hero-media>img{border-radius:80px 12px 80px 12px}.hero h1,.section h2{letter-spacing:-1.2px}}
+
+/* Distinct page hero: Online Admission */
+.admission-intro{position:relative;isolation:isolate;background:linear-gradient(90deg,#15145de8,#08603bcf),url('../images/page-heroes/admission-hero.webp') center/cover no-repeat;min-height:760px;display:flex;flex-direction:column;justify-content:center}.admission-intro:after{content:"ADMISSION";position:absolute;left:6%;bottom:4%;z-index:-1;color:#ffffff0b;font:900 clamp(60px,9vw,145px)/1 Georgia,serif}.admission-form-card{border-top:7px solid var(--mci-gold)}
