@@ -25,7 +25,7 @@
 <div class="due-table-wrap"><table class="due-table"><thead><tr><th>Student</th><th>Course / Batch</th><th>Fee Account</th><th>Pending Age</th><th>Last Payment</th><th>Reminder</th></tr></thead><tbody>
 @foreach($students as $student)
 @php
-$message='Namaste '.$student['student_name'].', C-Net Computer Education में आपके '.$student['course_code'].' course की ₹'.number_format($student['balance_amount'],2).' fee बाकी है। कृपया सुविधानुसार भुगतान करें। धन्यवाद।';
+$message='Namaste '.$student['student_name'].', Micro Computer Institute में आपके '.$student['course_code'].' course की ₹'.number_format($student['balance_amount'],2).' fee बाकी है। कृपया सुविधानुसार भुगतान करें। धन्यवाद।';
 $phone=preg_replace('/\D+/','',$student['phone'] ?? '');
 @endphp
 <tr>

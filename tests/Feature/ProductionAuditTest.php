@@ -15,8 +15,8 @@ class ProductionAuditTest extends TestCase
     {
         User::factory()->create(['is_admin'=>true]);
         config([
-            'app.env'=>'production','app.debug'=>false,'app.url'=>'https://cnetcomputer.mciedu.com',
-            'app.timezone'=>'Asia/Kolkata','mail.from.address'=>'cnetbiharsharif@gmail.com',
+            'app.env'=>'production','app.debug'=>false,'app.url'=>'https://mciedu.com',
+            'app.timezone'=>'Asia/Kolkata','mail.from.address'=>'mcieducationalgroup@gmail.com',
         ]);
         $audit=ProductionAuditService::run();
         $this->assertTrue($audit['ready'],collect($audit['checks'])->where('status','fail')->pluck('name','detail')->toJson());

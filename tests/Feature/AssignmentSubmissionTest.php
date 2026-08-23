@@ -17,7 +17,7 @@ class AssignmentSubmissionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        foreach (['cnet-admissions.json','cnet-learning-resources.json','cnet-assignment-submissions.json'] as $file) @unlink(storage_path('app/'.$file));
+        foreach (['mci-admissions.json','mci-learning-resources.json','mci-assignment-submissions.json'] as $file) @unlink(storage_path('app/'.$file));
         foreach ([['DCA','Diploma in Computer Applications'],['TALLY','Tally Prime']] as [$code,$title]) {
             Course::create(['code'=>$code,'title'=>$title,'duration'=>'6 Months','fee_amount'=>6000,'level'=>'Foundation','summary'=>'Course','is_active'=>true]);
         }
@@ -25,7 +25,7 @@ class AssignmentSubmissionTest extends TestCase
 
     protected function tearDown(): void
     {
-        foreach (['cnet-admissions.json','cnet-learning-resources.json','cnet-assignment-submissions.json'] as $file) @unlink(storage_path('app/'.$file));
+        foreach (['mci-admissions.json','mci-learning-resources.json','mci-assignment-submissions.json'] as $file) @unlink(storage_path('app/'.$file));
         parent::tearDown();
     }
 

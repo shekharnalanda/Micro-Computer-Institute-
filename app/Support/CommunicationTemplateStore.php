@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 
 class CommunicationTemplateStore
 {
-    private static function path(): string { return storage_path('app/cnet-communication-templates.json'); }
+    private static function path(): string { return storage_path('app/mci-communication-templates.json'); }
 
     public static function all(): array
     {
@@ -43,17 +43,17 @@ class CommunicationTemplateStore
             '{balance}'=>'₹'.number_format((float)($student['balance_amount']??0),2),
             '{portal_url}'=>route('student.login'),
         ];
-        return ['subject'=>strtr($template['subject']??'C-Net Computer Education',$replace),'body'=>strtr($template['body']??'',$replace)];
+        return ['subject'=>strtr($template['subject']??'Micro Computer Institute',$replace),'body'=>strtr($template['body']??'',$replace)];
     }
 
     private static function starters(): array
     {
         $now=now()->toIso8601String();
         return [
-            ['id'=>'starter-fee','name'=>'Fee Due Reminder','channel'=>'both','category'=>'fee','subject'=>'C-Net Fee Reminder','body'=>'Dear {student_name}, your pending course fee is {balance}. Please contact C-Net Computer Education. Student Portal: {portal_url}','created_at'=>$now],
-            ['id'=>'starter-assignment','name'=>'Assignment Reminder','channel'=>'both','category'=>'assignment','subject'=>'Assignment Reminder – {course}','body'=>'Dear {student_name}, please check and submit your pending assignments in the C-Net Student Portal: {portal_url}','created_at'=>$now],
-            ['id'=>'starter-result','name'=>'Result Published','channel'=>'both','category'=>'result','subject'=>'Your C-Net result is available','body'=>'Dear {student_name}, your latest result is now available in the Student Portal: {portal_url}','created_at'=>$now],
-            ['id'=>'starter-general','name'=>'General Student Message','channel'=>'both','category'=>'general','subject'=>'Important update from C-Net','body'=>'Dear {student_name}, an important update is available for your {course} course. Please visit: {portal_url}','created_at'=>$now],
+            ['id'=>'starter-fee','name'=>'Fee Due Reminder','channel'=>'both','category'=>'fee','subject'=>'MCI Fee Reminder','body'=>'Dear {student_name}, your pending course fee is {balance}. Please contact Micro Computer Institute. Student Portal: {portal_url}','created_at'=>$now],
+            ['id'=>'starter-assignment','name'=>'Assignment Reminder','channel'=>'both','category'=>'assignment','subject'=>'Assignment Reminder – {course}','body'=>'Dear {student_name}, please check and submit your pending assignments in the MCI Student Portal: {portal_url}','created_at'=>$now],
+            ['id'=>'starter-result','name'=>'Result Published','channel'=>'both','category'=>'result','subject'=>'Your MCI result is available','body'=>'Dear {student_name}, your latest result is now available in the Student Portal: {portal_url}','created_at'=>$now],
+            ['id'=>'starter-general','name'=>'General Student Message','channel'=>'both','category'=>'general','subject'=>'Important update from MCI','body'=>'Dear {student_name}, an important update is available for your {course} course. Please visit: {portal_url}','created_at'=>$now],
         ];
     }
 

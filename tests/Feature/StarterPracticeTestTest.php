@@ -16,14 +16,14 @@ class StarterPracticeTestTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        @unlink(storage_path('app/cnet-practice-tests.json'));
-        @unlink(storage_path('app/cnet-practice-attempts.json'));
+        @unlink(storage_path('app/mci-practice-tests.json'));
+        @unlink(storage_path('app/mci-practice-attempts.json'));
     }
 
     protected function tearDown(): void
     {
-        @unlink(storage_path('app/cnet-practice-tests.json'));
-        @unlink(storage_path('app/cnet-practice-attempts.json'));
+        @unlink(storage_path('app/mci-practice-tests.json'));
+        @unlink(storage_path('app/mci-practice-attempts.json'));
         parent::tearDown();
     }
 

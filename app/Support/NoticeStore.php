@@ -9,7 +9,7 @@ class NoticeStore
 {
     private static function path(): string
     {
-        return storage_path('app/cnet-notices.json');
+        return storage_path('app/mci-notices.json');
     }
 
     public static function all(): array

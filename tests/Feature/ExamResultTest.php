@@ -17,14 +17,14 @@ class ExamResultTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        @unlink(storage_path('app/cnet-admissions.json'));
-        @unlink(storage_path('app/cnet-exam-results.json'));
+        @unlink(storage_path('app/mci-admissions.json'));
+        @unlink(storage_path('app/mci-exam-results.json'));
     }
 
     protected function tearDown(): void
     {
-        @unlink(storage_path('app/cnet-admissions.json'));
-        @unlink(storage_path('app/cnet-exam-results.json'));
+        @unlink(storage_path('app/mci-admissions.json'));
+        @unlink(storage_path('app/mci-exam-results.json'));
         parent::tearDown();
     }
 
@@ -44,7 +44,7 @@ class ExamResultTest extends TestCase
         ]);
         AdmissionStore::updateStatus($student['id'], 'admitted');
         AdmissionStore::updateStudentRecord($student['id'], [
-            'roll_no' => 'CNET-DCA-020', 'batch_name' => 'Morning',
+            'roll_no' => 'MCI-DCA-020', 'batch_name' => 'Morning',
             'batch_time' => '08:00 AM', 'joining_date' => now()->subMonth()->toDateString(),
             'student_status' => 'active',
         ]);
@@ -69,7 +69,7 @@ class ExamResultTest extends TestCase
         $this->get(route('admin.results.index'))
             ->assertOk()->assertSee('Result Student')->assertSee('85.0%')->assertSee('Print Marksheet');
         $this->get(route('admin.results.marksheet', $result['id']))
-            ->assertOk()->assertSee('STATEMENT OF MARKS')->assertSee('CNET-DCA-020')
+            ->assertOk()->assertSee('STATEMENT OF MARKS')->assertSee('MCI-DCA-020')
             ->assertSee('Computer Fundamentals')->assertSee('255.00')->assertSee('RESULT: PASS');
     }
 

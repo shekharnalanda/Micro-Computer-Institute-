@@ -8,7 +8,7 @@ class AdmissionStore
 {
     private static function path(): string
     {
-        return storage_path('app/cnet-admissions.json');
+        return storage_path('app/mci-admissions.json');
     }
 
     public static function all(): array
@@ -35,7 +35,7 @@ class AdmissionStore
         $courseFee = (float) ($data['course_fee'] ?? 0);
         $item = array_merge($data, [
             'id' => (string) Str::uuid(),
-            'application_no' => 'CNET-'.now()->format('ymd').'-'.strtoupper(Str::random(5)),
+            'application_no' => 'MCI-'.now()->format('ymd').'-'.strtoupper(Str::random(5)),
             'status' => 'pending',
             'course_fee' => $courseFee,
             'paid_amount' => 0,
@@ -69,7 +69,7 @@ class AdmissionStore
             $item['payment_status'] = $paidAmount <= 0 ? 'unpaid' : ($balance > 0 ? 'partial' : 'paid');
             $item['payment_note'] = $paymentNote;
             if ($paidAmount > 0 && empty($item['receipt_no'])) {
-                $item['receipt_no'] = 'CNET-R'.now()->format('ymd').'-'.strtoupper(Str::random(4));
+                $item['receipt_no'] = 'MCI-R'.now()->format('ymd').'-'.strtoupper(Str::random(4));
             }
             return $item;
         });
@@ -78,7 +78,7 @@ class AdmissionStore
     public static function addPaymentTransaction(string $id, float $amount, string $date, string $mode, ?string $reference = null, ?string $note = null): bool
     {
         return self::update($id, function (array $item) use ($amount, $date, $mode, $reference, $note): array {
-            $receiptNo = 'CNET-R'.now()->format('ymd').'-'.strtoupper(Str::random(5));
+            $receiptNo = 'MCI-R'.now()->format('ymd').'-'.strtoupper(Str::random(5));
             $payments = is_array($item['payments'] ?? null) ? $item['payments'] : [];
             $payments[] = [
                 'id' => (string) Str::uuid(),

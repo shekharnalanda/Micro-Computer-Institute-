@@ -21,7 +21,7 @@ class ProductionAuditService
         $add('Environment','Application key',config('app.key')?'pass':'fail',config('app.key')?'Configured':'Missing');
         $url=(string)config('app.url');$host=(string)parse_url($url,PHP_URL_HOST);
         $add('Environment','HTTPS application URL',str_starts_with($url,'https://')?'pass':'fail',$url);
-        $add('Environment','Production domain',$host==='cnetcomputer.mciedu.com'?'pass':'warn',$host?:'Not configured');
+        $add('Environment','Production domain',$host==='mciedu.com'?'pass':'warn',$host?:'Not configured');
         $add('Environment','India timezone',config('app.timezone')==='Asia/Kolkata'?'pass':'warn',(string)config('app.timezone'));
 
         $add('Application','Composer vendor',is_file(base_path('vendor/autoload.php'))?'pass':'fail',is_file(base_path('vendor/autoload.php'))?'Present':'Missing');

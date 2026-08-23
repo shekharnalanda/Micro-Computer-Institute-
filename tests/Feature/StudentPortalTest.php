@@ -17,14 +17,14 @@ class StudentPortalTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        foreach (['cnet-admissions.json','cnet-attendance.json','cnet-exam-results.json','cnet-certificates.json'] as $file) {
+        foreach (['mci-admissions.json','mci-attendance.json','mci-exam-results.json','mci-certificates.json'] as $file) {
             @unlink(storage_path('app/'.$file));
         }
     }
 
     protected function tearDown(): void
     {
-        foreach (['cnet-admissions.json','cnet-attendance.json','cnet-exam-results.json','cnet-certificates.json'] as $file) {
+        foreach (['mci-admissions.json','mci-attendance.json','mci-exam-results.json','mci-certificates.json'] as $file) {
             @unlink(storage_path('app/'.$file));
         }
         parent::tearDown();
@@ -46,7 +46,7 @@ class StudentPortalTest extends TestCase
         ]);
         AdmissionStore::updateStatus($student['id'], 'admitted');
         AdmissionStore::updateStudentRecord($student['id'], [
-            'roll_no' => 'CNET-DCA-040', 'batch_name' => 'Morning Batch',
+            'roll_no' => 'MCI-DCA-040', 'batch_name' => 'Morning Batch',
             'batch_time' => '08:00 AM', 'joining_date' => now()->subMonth()->toDateString(),
             'student_status' => 'active',
         ]);
@@ -77,7 +77,7 @@ class StudentPortalTest extends TestCase
         $this->get(route('student.dashboard'))
             ->assertOk()
             ->assertHeader('cache-control', 'no-store, private')
-            ->assertSee('Portal Student')->assertSee('CNET-DCA-040')
+            ->assertSee('Portal Student')->assertSee('MCI-DCA-040')
             ->assertSee('PORTAL-UPI-01')->assertSee('50.0%')
             ->assertSee('Portal Test')->assertSee('Merit Certificate')
             ->assertSee($certificate['verification_code']);

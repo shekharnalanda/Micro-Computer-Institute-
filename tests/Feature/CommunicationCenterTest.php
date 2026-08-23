@@ -15,7 +15,7 @@ class CommunicationCenterTest extends TestCase
 {
     use RefreshDatabase;
 
-    private array $files=['cnet-admissions.json','cnet-communication-templates.json','cnet-notices.json','cnet-learning-resources.json','cnet-assignment-submissions.json','cnet-exam-results.json'];
+    private array $files=['mci-admissions.json','mci-communication-templates.json','mci-notices.json','mci-learning-resources.json','mci-assignment-submissions.json','mci-exam-results.json'];
 
     protected function setUp(): void
     {
@@ -35,7 +35,7 @@ class CommunicationCenterTest extends TestCase
         $templates=CommunicationTemplateStore::all();
         $this->assertCount(4,$templates);
         $rendered=CommunicationTemplateStore::render($templates[0],[
-            'student_name'=>'Sujit Student','course_code'=>'DCA','application_no'=>'CNET-001','balance_amount'=>2500,
+            'student_name'=>'Sujit Student','course_code'=>'DCA','application_no'=>'MCI-001','balance_amount'=>2500,
         ]);
         $this->assertStringContainsString('Sujit Student',$rendered['body']);
         $this->assertStringContainsString('₹2,500.00',$rendered['body']);

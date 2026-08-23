@@ -6,8 +6,8 @@ use Illuminate\Support\Str;
 
 class PracticeTestStore
 {
-    private static function testsPath(): string { return storage_path('app/cnet-practice-tests.json'); }
-    private static function attemptsPath(): string { return storage_path('app/cnet-practice-attempts.json'); }
+    private static function testsPath(): string { return storage_path('app/mci-practice-tests.json'); }
+    private static function attemptsPath(): string { return storage_path('app/mci-practice-attempts.json'); }
 
     public static function all(): array
     {

@@ -26,7 +26,7 @@ class EnquiryController extends Controller
 
     public function export(Request $request): StreamedResponse
     {
-        $fileName = 'cnet-enquiries-'.now()->format('Y-m-d-His').'.csv';
+        $fileName = 'mci-enquiries-'.now()->format('Y-m-d-His').'.csv';
 
         return response()->streamDownload(function () use ($request): void {
             $handle = fopen('php://output', 'w');

@@ -2,7 +2,7 @@
 @media(max-width:1100px){.site-header nav{display:none}.hero{grid-template-columns:1fr}.hero-media{max-width:720px;width:100%;margin:auto}.course-grid{grid-template-columns:repeat(3,1fr)}.lab,.jobs{grid-template-columns:1fr}}
 @media(max-width:760px){.site-header{height:70px;padding:0 18px}.site-header>.pill{display:none}.hero{padding:58px 20px}.hero h1,.section h2{letter-spacing:-2.5px}.proof{flex-wrap:wrap}.hero-media{height:390px}.float.top{left:8px}.float.bottom{right:8px}.section{padding:76px 20px}.split{grid-template-columns:1fr;gap:18px}.course-grid{grid-template-columns:1fr}.lab-photo img{height:430px}.lab-photo>div{right:12px}.job-fields,.smart{grid-template-columns:1fr}.job-panel{padding:17px}.panel-head span{display:none}.steps{grid-template-columns:1fr 1fr}.contact{grid-template-columns:1fr}.footer-links{display:none}footer{grid-template-columns:1fr}}
 
-/* Official C-Net identity */
+/* Official MCI identity */
 .brand-logo{width:58px;height:58px;border-radius:50%;object-fit:contain;background:#fff;box-shadow:0 4px 16px #0729551f;flex:0 0 auto}
 .footer-logo{width:72px;height:72px;border-radius:50%;object-fit:contain;background:#fff;flex:0 0 auto}
 @media(max-width:760px){.brand-logo{width:50px;height:50px}.brand strong{font-size:17px}.brand small{font-size:8px;letter-spacing:1.25px}.footer-logo{width:66px;height:66px}}

@@ -8,7 +8,7 @@ class GalleryStore
 {
     private static function path(): string
     {
-        return storage_path('app/cnet-gallery.json');
+        return storage_path('app/mci-gallery.json');
     }
 
     public static function all(): array

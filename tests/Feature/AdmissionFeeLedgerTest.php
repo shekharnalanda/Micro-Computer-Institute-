@@ -17,12 +17,12 @@ class AdmissionFeeLedgerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Storage::disk('local')->delete('cnet-admissions.json');
+        Storage::disk('local')->delete('mci-admissions.json');
     }
 
     protected function tearDown(): void
     {
-        Storage::disk('local')->delete('cnet-admissions.json');
+        Storage::disk('local')->delete('mci-admissions.json');
         parent::tearDown();
     }
 
@@ -180,7 +180,7 @@ class AdmissionFeeLedgerTest extends TestCase
 
         $admin = User::factory()->create(['is_admin' => true]);
         $this->actingAs($admin)->patch(route('admin.students.update', $student['id']), [
-            'roll_no' => 'CNET-DCA-001',
+            'roll_no' => 'MCI-DCA-001',
             'batch_name' => 'DCA Morning Batch',
             'batch_time' => '08:00 AM - 10:00 AM',
             'joining_date' => '2026-08-22',
@@ -188,11 +188,11 @@ class AdmissionFeeLedgerTest extends TestCase
         ])->assertRedirect();
 
         $updated = AdmissionStore::find($student['id']);
-        $this->assertSame('CNET-DCA-001', $updated['roll_no']);
+        $this->assertSame('MCI-DCA-001', $updated['roll_no']);
         $this->assertSame('DCA Morning Batch', $updated['batch_name']);
 
         $this->get(route('admin.students.card', $student['id']))
-            ->assertOk()->assertSee('CNET-DCA-001')->assertSee('DCA Morning Batch');
+            ->assertOk()->assertSee('MCI-DCA-001')->assertSee('DCA Morning Batch');
     }
 
 
@@ -256,7 +256,7 @@ class AdmissionFeeLedgerTest extends TestCase
         AdmissionStore::updateStatus($student['id'], 'admitted');
         AdmissionStore::updatePayment($student['id'], 4500, 1500, 'Opening payment');
         AdmissionStore::updateStudentRecord($student['id'], [
-            'roll_no' => 'CNET-DCA-010', 'batch_name' => 'Morning',
+            'roll_no' => 'MCI-DCA-010', 'batch_name' => 'Morning',
             'batch_time' => '08:00 AM', 'joining_date' => now()->subDays(65)->toDateString(),
             'student_status' => 'active',
         ]);
@@ -276,7 +276,7 @@ class AdmissionFeeLedgerTest extends TestCase
             ->assertOk()
             ->assertSee('Fee Due Report')
             ->assertSee('Due Student')
-            ->assertSee('CNET-DCA-010')
+            ->assertSee('MCI-DCA-010')
             ->assertSee('WhatsApp Reminder')
             ->assertDontSee('Paid Student');
 

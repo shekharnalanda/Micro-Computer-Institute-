@@ -16,14 +16,14 @@ class CertificateTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        @unlink(storage_path('app/cnet-admissions.json'));
-        @unlink(storage_path('app/cnet-certificates.json'));
+        @unlink(storage_path('app/mci-admissions.json'));
+        @unlink(storage_path('app/mci-certificates.json'));
     }
 
     protected function tearDown(): void
     {
-        @unlink(storage_path('app/cnet-admissions.json'));
-        @unlink(storage_path('app/cnet-certificates.json'));
+        @unlink(storage_path('app/mci-admissions.json'));
+        @unlink(storage_path('app/mci-certificates.json'));
         parent::tearDown();
     }
 
@@ -43,7 +43,7 @@ class CertificateTest extends TestCase
         ]);
         AdmissionStore::updateStatus($student['id'], 'admitted');
         AdmissionStore::updateStudentRecord($student['id'], [
-            'roll_no' => 'CNET-DCA-030', 'batch_name' => 'Morning',
+            'roll_no' => 'MCI-DCA-030', 'batch_name' => 'Morning',
             'batch_time' => '08:00 AM', 'joining_date' => now()->subMonths(6)->toDateString(),
             'student_status' => 'completed',
         ]);
@@ -60,16 +60,16 @@ class CertificateTest extends TestCase
         ])->assertRedirect()->assertSessionHas('success');
 
         $certificate = CertificateStore::all()[0];
-        $this->assertStringStartsWith('CNET-CERT-', $certificate['certificate_no']);
-        $this->assertMatchesRegularExpression('/^CNET-[A-Z0-9]{4}-[A-Z0-9]{4}$/', $certificate['verification_code']);
+        $this->assertStringStartsWith('MCI-CERT-', $certificate['certificate_no']);
+        $this->assertMatchesRegularExpression('/^MCI-[A-Z0-9]{4}-[A-Z0-9]{4}$/', $certificate['verification_code']);
 
         $this->get(route('admin.certificates.index'))
             ->assertOk()->assertSee('Certified Student')->assertSee($certificate['verification_code']);
         $this->get(route('admin.certificates.print', $certificate['id']))
-            ->assertOk()->assertSee('Certificate of Course Completion')->assertSee('CNET-DCA-030')->assertSee($certificate['verification_code']);
+            ->assertOk()->assertSee('Certificate of Course Completion')->assertSee('MCI-DCA-030')->assertSee($certificate['verification_code']);
 
         $this->get(route('certificates.verify', ['code' => strtolower($certificate['verification_code'])]))
-            ->assertOk()->assertSee('Authentic C-Net Certificate')->assertSee('Certified Student')->assertSee('Diploma in Computer Applications');
+            ->assertOk()->assertSee('Authentic MCI Certificate')->assertSee('Certified Student')->assertSee('Diploma in Computer Applications');
     }
 
     public function test_revoked_or_unknown_certificate_does_not_verify(): void
@@ -92,6 +92,6 @@ class CertificateTest extends TestCase
         $this->actingAs($admin)->delete(route('admin.certificates.destroy', $certificate['id']))
             ->assertRedirect()->assertSessionHas('success');
         $this->get(route('certificates.verify', ['code' => $certificate['verification_code']]))
-            ->assertOk()->assertSee('Certificate not found')->assertDontSee('Authentic C-Net Certificate');
+            ->assertOk()->assertSee('Certificate not found')->assertDontSee('Authentic MCI Certificate');
     }
 }

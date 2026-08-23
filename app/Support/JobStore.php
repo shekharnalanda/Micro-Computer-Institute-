@@ -9,7 +9,7 @@ class JobStore
 {
     private static function path(): string
     {
-        return storage_path('app/cnet-jobs.json');
+        return storage_path('app/mci-jobs.json');
     }
 
     public static function all(): array

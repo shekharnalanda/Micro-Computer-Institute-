@@ -2,7 +2,7 @@
 
 return [
 
-    'enquiry_to' => env('MAIL_ENQUIRY_TO', 'cnetbiharsharif@gmail.com'),
+    'enquiry_to' => env('MAIL_ENQUIRY_TO', 'mcieducationalgroup@gmail.com'),
 
     /*
     |--------------------------------------------------------------------------

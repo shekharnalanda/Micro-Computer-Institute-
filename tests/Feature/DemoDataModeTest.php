@@ -15,7 +15,7 @@ use Tests\TestCase;
 class DemoDataModeTest extends TestCase
 {
     use RefreshDatabase;
-    private array $files=['cnet-admissions.json','cnet-practice-tests.json','cnet-practice-attempts.json','cnet-exam-results.json','cnet-certificates.json'];
+    private array $files=['mci-admissions.json','mci-practice-tests.json','mci-practice-attempts.json','mci-exam-results.json','mci-certificates.json'];
     protected function setUp():void{parent::setUp();foreach($this->files as $file)@unlink(storage_path('app/'.$file));}
     protected function tearDown():void{foreach($this->files as $file)@unlink(storage_path('app/'.$file));parent::tearDown();}
 

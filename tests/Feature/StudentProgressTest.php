@@ -17,7 +17,7 @@ class StudentProgressTest extends TestCase
 {
     use RefreshDatabase;
 
-    private array $files=['cnet-admissions.json','cnet-attendance.json','cnet-assignment-submissions.json','cnet-exam-results.json','cnet-practice-tests.json','cnet-practice-attempts.json'];
+    private array $files=['mci-admissions.json','mci-attendance.json','mci-assignment-submissions.json','mci-exam-results.json','mci-practice-tests.json','mci-practice-attempts.json'];
 
     protected function setUp(): void
     {

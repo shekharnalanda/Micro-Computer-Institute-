@@ -6,7 +6,7 @@ class AttendanceStore
 {
     private static function path(): string
     {
-        return storage_path('app/cnet-attendance.json');
+        return storage_path('app/mci-attendance.json');
     }
 
     public static function all(): array

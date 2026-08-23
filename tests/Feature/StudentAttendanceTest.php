@@ -16,12 +16,12 @@ class StudentAttendanceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Storage::disk('local')->delete(['cnet-admissions.json','cnet-attendance.json']);
+        Storage::disk('local')->delete(['mci-admissions.json','mci-attendance.json']);
     }
 
     protected function tearDown(): void
     {
-        Storage::disk('local')->delete(['cnet-admissions.json','cnet-attendance.json']);
+        Storage::disk('local')->delete(['mci-admissions.json','mci-attendance.json']);
         parent::tearDown();
     }
 
@@ -44,7 +44,7 @@ class StudentAttendanceTest extends TestCase
         ]);
         AdmissionStore::updateStatus($student['id'], 'admitted');
         AdmissionStore::updateStudentRecord($student['id'], [
-            'roll_no' => 'CNET-DCA-001',
+            'roll_no' => 'MCI-DCA-001',
             'batch_name' => 'DCA Morning',
             'batch_time' => '08:00 AM',
             'joining_date' => '2026-08-22',
@@ -87,7 +87,7 @@ class StudentAttendanceTest extends TestCase
         ]);
         AdmissionStore::updateStatus($student['id'], 'admitted');
         AdmissionStore::updateStudentRecord($student['id'], [
-            'roll_no' => 'CNET-DCA-002',
+            'roll_no' => 'MCI-DCA-002',
             'batch_name' => 'DCA Morning',
             'batch_time' => '08:00 AM',
             'joining_date' => '2026-08-01',

@@ -67,7 +67,7 @@ class AttendanceController extends Controller
                 ]);
             }
             fclose($output);
-        }, 'cnet-attendance-'.$date.'.csv', ['Content-Type' => 'text/csv']);
+        }, 'mci-attendance-'.$date.'.csv', ['Content-Type' => 'text/csv']);
     }
 
     public function monthly(Request $request)
@@ -91,7 +91,7 @@ class AttendanceController extends Controller
                 ]);
             }
             fclose($output);
-        }, 'cnet-monthly-attendance-'.$data['month'].'.csv', ['Content-Type' => 'text/csv']);
+        }, 'mci-monthly-attendance-'.$data['month'].'.csv', ['Content-Type' => 'text/csv']);
     }
 
     private function monthlyData(Request $request): array

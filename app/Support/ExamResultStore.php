@@ -8,7 +8,7 @@ class ExamResultStore
 {
     private static function path(): string
     {
-        return storage_path('app/cnet-exam-results.json');
+        return storage_path('app/mci-exam-results.json');
     }
 
     public static function all(): array
@@ -29,7 +29,7 @@ class ExamResultStore
         $items = self::all();
         $item = array_merge($data, [
             'id' => (string) Str::uuid(),
-            'result_no' => 'CNET-RESULT-'.now()->format('ymd').'-'.strtoupper(Str::random(5)),
+            'result_no' => 'MCI-RESULT-'.now()->format('ymd').'-'.strtoupper(Str::random(5)),
             'created_at' => now()->toIso8601String(),
         ]);
         array_unshift($items, $item);

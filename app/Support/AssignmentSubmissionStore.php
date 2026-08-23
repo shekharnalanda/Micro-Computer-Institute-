@@ -8,7 +8,7 @@ class AssignmentSubmissionStore
 {
     private static function path(): string
     {
-        return storage_path('app/cnet-assignment-submissions.json');
+        return storage_path('app/mci-assignment-submissions.json');
     }
 
     public static function all(): array

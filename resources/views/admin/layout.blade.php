@@ -1,6 +1,6 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>@yield('title') · C-Net Admin</title><link rel="stylesheet" href="{{ asset('css/admin.css') }}"><link rel="stylesheet" href="{{ asset('css/admin-nav.css') }}"></head>
-<body><div class="admin-shell"><aside class="sidebar"><div class="logo"><img src="{{ asset('images/cnet-logo.webp') }}" alt="C-Net"><div><b>C-Net Admin</b><small>Computer Education</small></div></div><nav class="admin-nav">
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>@yield('title') · MCI Admin</title><link rel="stylesheet" href="{{ asset('css/admin.css') }}"><link rel="stylesheet" href="{{ asset('css/admin-nav.css') }}"></head>
+<body><div class="admin-shell"><aside class="sidebar"><div class="logo"><img src="{{ asset('images/mci-logo.webp') }}" alt="MCI"><div><b>MCI Admin</b><small>Computer Education</small></div></div><nav class="admin-nav">
 <a class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">⌂ Dashboard</a>
 <details class="nav-group" {{ request()->routeIs('admin.courses.*', 'admin.learning.*', 'admin.assignments.*', 'admin.practice.*', 'admin.results.*', 'admin.certificates.*') ? 'open' : '' }}><summary>▣ Academics</summary><div class="nav-group-links">
 <a class="{{ request()->routeIs('admin.courses.*') ? 'active' : '' }}" href="{{ route('admin.courses.index') }}">▣ Courses</a>

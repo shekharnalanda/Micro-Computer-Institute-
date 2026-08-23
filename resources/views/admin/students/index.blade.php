@@ -52,7 +52,7 @@
 </dialog>
 <dialog class="student-record-dialog" id="student-{{ $student['id'] }}"><div class="dialog-head"><div><small>ACADEMIC RECORD</small><h2>{{ $student['student_name'] }}</h2></div><button type="button" onclick="this.closest('dialog').close()">×</button></div>
 <form class="form-grid" method="post" action="{{ route('admin.students.update',$student['id']) }}">@csrf @method('PATCH')
-<label>Roll Number<input name="roll_no" value="{{ $student['roll_no'] ?? '' }}" maxlength="40" placeholder="e.g. CNET-DCA-001"></label>
+<label>Roll Number<input name="roll_no" value="{{ $student['roll_no'] ?? '' }}" maxlength="40" placeholder="e.g. MCI-DCA-001"></label>
 <label>Joining Date<input type="date" name="joining_date" value="{{ $student['joining_date'] ?? '' }}"></label>
 <label>Batch Name<input name="batch_name" value="{{ $student['batch_name'] ?? '' }}" maxlength="100" placeholder="e.g. DCA Morning Batch"></label>
 <label>Batch Timing<input name="batch_time" value="{{ $student['batch_time'] ?? $student['preferred_time'] ?? '' }}" maxlength="100" placeholder="e.g. 08:00 AM – 10:00 AM"></label>

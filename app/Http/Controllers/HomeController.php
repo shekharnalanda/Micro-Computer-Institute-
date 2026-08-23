@@ -51,7 +51,7 @@ class HomeController extends Controller
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>C-Net setup needs attention</title>
+    <title>MCI setup needs attention</title>
     <style>
         body{margin:0;background:#eef4fb;color:#17324d;font-family:Arial,sans-serif}
         main{max-width:760px;margin:8vh auto;padding:32px;background:#fff;border-radius:18px;box-shadow:0 12px 40px #17324d22}
@@ -60,7 +60,7 @@ class HomeController extends Controller
     </style>
 </head>
 <body><main>
-    <h1>C-Net setup needs attention</h1>
+    <h1>MCI setup needs attention</h1>
     <p>Laravel is running, but database initialization needs attention.</p>
     <p><strong>Environment:</strong> <code>{$environment}</code></p>
     <pre>{$safeMessage}</pre>

@@ -21,7 +21,7 @@ class BackupController extends Controller
         $json=json_encode($backup,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
         return response($json,200,[
             'Content-Type'=>'application/json; charset=UTF-8',
-            'Content-Disposition'=>'attachment; filename="CNet-Computer-Backup-'.now()->format('Y-m-d-His').'.json"',
+            'Content-Disposition'=>'attachment; filename="MCI-Computer-Backup-'.now()->format('Y-m-d-His').'.json"',
             'Cache-Control'=>'no-store, private',
         ]);
     }
@@ -30,7 +30,7 @@ class BackupController extends Controller
     {
         $request->validate([
             'backup_file'=>['required','file','max:10240'],
-            'confirmation'=>['required','in:RESTORE C-NET DATA'],
+            'confirmation'=>['required','in:RESTORE MCI DATA'],
         ]);
         try{
             $decoded=json_decode((string)file_get_contents($request->file('backup_file')->getRealPath()),true,512,JSON_THROW_ON_ERROR);

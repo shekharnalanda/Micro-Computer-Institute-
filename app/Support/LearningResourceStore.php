@@ -8,7 +8,7 @@ class LearningResourceStore
 {
     private static function path(): string
     {
-        return storage_path('app/cnet-learning-resources.json');
+        return storage_path('app/mci-learning-resources.json');
     }
 
     public static function all(): array

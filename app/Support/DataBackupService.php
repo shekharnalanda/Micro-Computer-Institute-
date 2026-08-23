@@ -12,10 +12,10 @@ class DataBackupService
 {
     public const VERSION=1;
     public const RUNTIME_FILES=[
-        'cnet-settings.json','cnet-gallery.json','cnet-notices.json','cnet-jobs.json',
-        'cnet-admissions.json','cnet-attendance.json','cnet-exam-results.json','cnet-certificates.json',
-        'cnet-learning-resources.json','cnet-assignment-submissions.json','cnet-practice-tests.json',
-        'cnet-practice-attempts.json','cnet-communication-templates.json',
+        'mci-settings.json','mci-gallery.json','mci-notices.json','mci-jobs.json',
+        'mci-admissions.json','mci-attendance.json','mci-exam-results.json','mci-certificates.json',
+        'mci-learning-resources.json','mci-assignment-submissions.json','mci-practice-tests.json',
+        'mci-practice-attempts.json','mci-communication-templates.json',
     ];
 
     public static function create(): array
@@ -27,7 +27,7 @@ class DataBackupService
             $runtime[$file]=is_array($data)?$data:[];
         }
         $payload=[
-            'format'=>'cnet-computer-education-backup','version'=>self::VERSION,
+            'format'=>'mci-computer-education-backup','version'=>self::VERSION,
             'created_at'=>now()->toIso8601String(),'application'=>config('app.name'),
             'runtime'=>$runtime,
             'database'=>[
@@ -41,8 +41,8 @@ class DataBackupService
     public static function verify(array $backup): array
     {
         $payload=$backup['payload']??null; $signature=(string)($backup['signature']??'');
-        if(!is_array($payload)||($payload['format']??'')!=='cnet-computer-education-backup'||($payload['version']??null)!==self::VERSION)
-            throw new RuntimeException('Invalid or unsupported C-Net backup file.');
+        if(!is_array($payload)||($payload['format']??'')!=='mci-computer-education-backup'||($payload['version']??null)!==self::VERSION)
+            throw new RuntimeException('Invalid or unsupported MCI backup file.');
         if(!hash_equals(self::sign($payload),$signature))throw new RuntimeException('Backup signature is invalid. The file may be changed or from another installation.');
         foreach(array_keys((array)($payload['runtime']??[])) as $file)if(!in_array($file,self::RUNTIME_FILES,true))throw new RuntimeException('Backup contains an unsupported data file.');
         return $payload;

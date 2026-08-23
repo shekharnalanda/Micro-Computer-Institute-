@@ -15,7 +15,7 @@
 <label>Third Highlight Value<input name="highlight_three_value" value="{{ old('highlight_three_value',$settings['highlight_three_value']) }}" required></label>
 <label>Third Highlight Label<input name="highlight_three_label" value="{{ old('highlight_three_label',$settings['highlight_three_label']) }}" required></label>
 </div></section>
-<section class="panel settings-panel full-panel"><div class="panel-title"><div><small>WHY C-NET</small><h2>Institute message</h2></div></div><div class="settings-form">
+<section class="panel settings-panel full-panel"><div class="panel-title"><div><small>WHY MCI</small><h2>Institute message</h2></div></div><div class="settings-form">
 <label>Main Text<input name="why_title" value="{{ old('why_title',$settings['why_title']) }}" required></label>
 <label>Highlighted Text<input name="why_highlight" value="{{ old('why_highlight',$settings['why_highlight']) }}" required></label>
 <label class="full">Short Description<textarea name="why_lead" rows="2" required>{{ old('why_lead',$settings['why_lead']) }}</textarea></label>

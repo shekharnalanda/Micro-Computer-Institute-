@@ -8,7 +8,7 @@ class CertificateStore
 {
     private static function path(): string
     {
-        return storage_path('app/cnet-certificates.json');
+        return storage_path('app/mci-certificates.json');
     }
 
     public static function all(): array
@@ -33,11 +33,11 @@ class CertificateStore
     {
         $items = self::all();
         do {
-            $code = 'CNET-'.strtoupper(Str::random(4)).'-'.strtoupper(Str::random(4));
+            $code = 'MCI-'.strtoupper(Str::random(4)).'-'.strtoupper(Str::random(4));
         } while (collect($items)->contains('verification_code', $code));
         $item = array_merge($data, [
             'id' => (string) Str::uuid(),
-            'certificate_no' => 'CNET-CERT-'.now()->format('ymd').'-'.strtoupper(Str::random(5)),
+            'certificate_no' => 'MCI-CERT-'.now()->format('ymd').'-'.strtoupper(Str::random(5)),
             'verification_code' => $code,
             'created_at' => now()->toIso8601String(),
         ]);

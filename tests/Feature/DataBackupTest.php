@@ -39,11 +39,11 @@ class DataBackupTest extends TestCase
             'address'=>'Bihar Sharif','email'=>'','preferred_time'=>'Morning','message'=>'',
         ]);
         $backup=DataBackupService::create();
-        $this->assertSame('cnet-computer-education-backup',$backup['payload']['format']);
+        $this->assertSame('mci-computer-education-backup',$backup['payload']['format']);
 
         Course::query()->delete();
         Enquiry::query()->delete();
-        @unlink(storage_path('app/cnet-admissions.json'));
+        @unlink(storage_path('app/mci-admissions.json'));
         $result=DataBackupService::restore($backup);
 
         $this->assertSame(13,$result['files']);
@@ -79,7 +79,7 @@ class DataBackupTest extends TestCase
 
         $this->actingAs($admin)->post(route('admin.backup.restore'),[
             'backup_file'=>UploadedFile::fake()->createWithContent('backup.json',json_encode($backup)),
-            'confirmation'=>'RESTORE C-NET DATA',
+            'confirmation'=>'RESTORE MCI DATA',
         ])->assertRedirect()->assertSessionHas('success');
     }
 

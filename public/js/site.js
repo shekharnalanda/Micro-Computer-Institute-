@@ -12,7 +12,7 @@ const defaultCourses = [
   {code:"AI",title:"AI Tools for Study & Work",hi:"पढ़ाई और काम के लिए AI Tools",duration:"1 Month",level:"Future Skill",summary:"Prompting · Research · Productivity · Responsible AI",eligibility:"Basic computer knowledge",modules:["AI fundamentals","Effective prompting","Research and summarisation","Documents and presentations","Creative workflows","Responsible AI"],careers:["AI-enabled Office Assistant","Content Assistant","Productivity Specialist"]},
   {code:"DATA",title:"Data Entry & Office Assistant",hi:"डेटा एंट्री एवं ऑफिस असिस्टेंट",duration:"3 Months",level:"Job-ready",summary:"Typing · Documents · Spreadsheets · Communication",eligibility:"10th pass",modules:["English and Hindi typing","Document formatting","Spreadsheet data entry","Email and file management","Office communication","Accuracy tests"],careers:["Data Entry Operator","Office Assistant","Back Office Executive"]}
 ];
-const courses = Array.isArray(window.CNET_COURSES) && window.CNET_COURSES.length ? window.CNET_COURSES : defaultCourses;
+const courses = Array.isArray(window.MCI_COURSES) && window.MCI_COURSES.length ? window.MCI_COURSES : defaultCourses;
 
 function feeLabel(course){return course.fee===null||course.fee===undefined||course.fee===""?"Fee on enquiry":"₹"+Number(course.fee).toLocaleString("en-IN",{minimumFractionDigits:2,maximumFractionDigits:2})}
 const levels=["All","Foundation","Job-ready","Career","Technical","Creative","Future Skill"];

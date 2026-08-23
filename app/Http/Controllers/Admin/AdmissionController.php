@@ -210,7 +210,7 @@ class AdmissionController extends Controller
                 ]);
             }
             fclose($output);
-        }, 'cnet-fee-dues-'.date('Y-m-d').'.csv', ['Content-Type' => 'text/csv']);
+        }, 'mci-fee-dues-'.date('Y-m-d').'.csv', ['Content-Type' => 'text/csv']);
     }
 
 
@@ -239,7 +239,7 @@ class AdmissionController extends Controller
                 ]);
             }
             fclose($output);
-        }, 'cnet-fee-collections-'.date('Y-m-d').'.csv', ['Content-Type' => 'text/csv']);
+        }, 'mci-fee-collections-'.date('Y-m-d').'.csv', ['Content-Type' => 'text/csv']);
     }
 
     public function receipt(string $id)
@@ -280,7 +280,7 @@ class AdmissionController extends Controller
                 ]);
             }
             fclose($output);
-        }, 'cnet-admissions-fees-'.date('Y-m-d').'.csv', ['Content-Type' => 'text/csv']);
+        }, 'mci-admissions-fees-'.date('Y-m-d').'.csv', ['Content-Type' => 'text/csv']);
     }
 
 

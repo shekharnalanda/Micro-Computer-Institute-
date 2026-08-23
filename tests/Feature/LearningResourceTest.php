@@ -16,16 +16,16 @@ class LearningResourceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        @unlink(storage_path('app/cnet-learning-resources.json'));
-        @unlink(storage_path('app/cnet-admissions.json'));
+        @unlink(storage_path('app/mci-learning-resources.json'));
+        @unlink(storage_path('app/mci-admissions.json'));
         $this->course('DCA', 'Diploma in Computer Applications');
         $this->course('TALLY', 'Tally Prime with GST');
     }
 
     protected function tearDown(): void
     {
-        @unlink(storage_path('app/cnet-learning-resources.json'));
-        @unlink(storage_path('app/cnet-admissions.json'));
+        @unlink(storage_path('app/mci-learning-resources.json'));
+        @unlink(storage_path('app/mci-admissions.json'));
         parent::tearDown();
     }
 
