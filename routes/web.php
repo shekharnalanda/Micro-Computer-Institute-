@@ -36,6 +36,7 @@ Route::post('/student/login', [StudentPortalController::class,'login'])->middlew
 Route::get('/student', [StudentPortalController::class,'dashboard'])->name('student.dashboard');
 Route::post('/student/logout', [StudentPortalController::class,'logout'])->name('student.logout');
 Route::post('/student/assignments', [StudentPortalController::class,'submitAssignment'])->middleware('throttle:10,1')->name('student.assignments.submit');
+Route::get('/student/resources/{id}/download', [StudentPortalController::class,'downloadResource'])->name('student.resources.download');
 Route::get('/student/practice-tests/{id}', [StudentPortalController::class,'practiceTest'])->name('student.practice.take');
 Route::post('/student/practice-tests/{id}', [StudentPortalController::class,'submitPracticeTest'])->middleware('throttle:10,1')->name('student.practice.submit');
 Route::get('/student/practice-results/{attemptId}', [StudentPortalController::class,'practiceResult'])->name('student.practice.result');
@@ -83,6 +84,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/learning',[LearningResourceController::class,'store'])->name('learning.store');
         Route::patch('/learning/{id}/toggle',[LearningResourceController::class,'toggle'])->name('learning.toggle');
         Route::delete('/learning/{id}',[LearningResourceController::class,'destroy'])->name('learning.destroy');
+        Route::get('/learning/{id}/download',[LearningResourceController::class,'download'])->name('learning.download');
         Route::get('/results',[ResultController::class,'index'])->name('results.index');
         Route::post('/results',[ResultController::class,'store'])->name('results.store');
         Route::get('/results/{id}/marksheet',[ResultController::class,'marksheet'])->name('results.marksheet');
