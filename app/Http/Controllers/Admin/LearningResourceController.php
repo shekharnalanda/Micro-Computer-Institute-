@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Support\LearningResourceStore;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class LearningResourceController extends Controller
 {
@@ -36,10 +38,19 @@ class LearningResourceController extends Controller
             'type' => ['required','in:notes,video,assignment,practice,link'],
             'title' => ['required','string','max:180'],
             'description' => ['nullable','string','max:1000'],
-            'link_url' => ['required','url','max:1000','starts_with:http://,https://'],
+            'link_url' => ['nullable','url','max:1000','starts_with:http://,https://','required_without:material_file'],
+            'material_file' => ['nullable','file','mimes:pdf','max:25600','required_without:link_url'],
             'due_date' => ['nullable','date'],
             'is_pinned' => ['nullable','boolean'],
         ]);
+        unset($data['material_file']);
+        if ($request->hasFile('material_file')) {
+            $file = $request->file('material_file');
+            $data['file_path'] = $file->storeAs('learning-materials', Str::uuid().'.pdf', 'local');
+            $data['file_name'] = $file->getClientOriginalName();
+            $data['file_size'] = $file->getSize();
+            $data['link_url'] = '';
+        }
         $data['is_pinned'] = $request->boolean('is_pinned');
         LearningResourceStore::add($data);
         return back()->with('success', 'Learning resource published successfully.');
@@ -53,7 +64,18 @@ class LearningResourceController extends Controller
 
     public function destroy(string $id)
     {
+        $resource = LearningResourceStore::find($id);
         abort_unless(LearningResourceStore::remove($id), 404);
+        if (! empty($resource['file_path'])) Storage::disk('local')->delete($resource['file_path']);
         return back()->with('success', 'Learning resource deleted.');
+    }
+
+    public function download(string $id)
+    {
+        $resource = LearningResourceStore::find($id);
+        abort_unless($resource && ! empty($resource['file_path']) && Storage::disk('local')->exists($resource['file_path']), 404);
+        return Storage::disk('local')->download($resource['file_path'], $resource['file_name'] ?? 'study-material.pdf', [
+            'Content-Type' => 'application/pdf',
+        ]);
     }
 }
