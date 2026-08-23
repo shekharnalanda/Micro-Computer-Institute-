@@ -92,3 +92,11 @@ footer{background:#0f133d;border-top:6px solid var(--mci-gold)}.footer-logo{widt
 .hero-copy>p{max-width:590px}
 @media(max-width:1100px){.hero{display:block;min-height:610px;padding:78px 6vw;background:linear-gradient(90deg,#fffdf7 0%,#fffdf7ed 45%,#fffdf759 72%),url('../images/hero-computer-lab.webp') 68% center/cover no-repeat}.hero-copy{max-width:58%}.hero h1{font-size:clamp(42px,6vw,66px)}}
 @media(max-width:760px){html,body{max-width:100%;overflow-x:hidden}.hero{min-height:720px;padding:50px 22px 360px;background:linear-gradient(180deg,#fffdf7 0%,#fffdf7f2 49%,transparent 70%),url('../images/hero-computer-lab.webp') 70% bottom/auto 390px no-repeat #eef7ef}.hero-copy{max-width:100%}.hero h1{font-size:clamp(40px,12vw,58px)}.proof{gap:18px}.proof strong{font-size:22px}}
+
+/* Enquiry panel contrast and alignment correction */
+.enquiry-wrap{align-items:stretch}
+.enquiry-copy{display:flex;flex-direction:column;justify-content:center;min-height:100%;padding:clamp(38px,6vw,76px);color:#fff;background:linear-gradient(145deg,#17145a,#312889)}
+.enquiry-copy .kicker{color:#f0c62d}
+.enquiry-copy h2{color:#fff;text-decoration:none;margin:18px 0 20px;line-height:1.04}
+.enquiry-copy p{color:#e5e8ff!important;font-size:17px;line-height:1.8;max-width:520px}
+@media(max-width:900px){.enquiry-copy{min-height:360px;padding:42px 28px}.enquiry-copy h2{font-size:clamp(38px,10vw,58px)}}
