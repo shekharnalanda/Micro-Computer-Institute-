@@ -83,6 +83,14 @@ class AssignmentSubmissionStore
         return true;
     }
 
+    public static function removeForStudents(array $studentIds): int
+    {
+        $items=self::all(); $before=count($items);
+        $items=array_values(array_filter($items,fn(array $item):bool=>!in_array($item['student_id']??'',$studentIds,true)));
+        self::write($items);
+        return $before-count($items);
+    }
+
     private static function write(array $items): void
     {
         file_put_contents(self::path(), json_encode($items, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), LOCK_EX);
