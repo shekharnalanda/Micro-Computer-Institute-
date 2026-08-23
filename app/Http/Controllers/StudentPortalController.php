@@ -17,6 +17,7 @@ use App\Support\StudentNotificationCenter;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Storage;
 
 class StudentPortalController extends Controller
 {
@@ -107,6 +108,22 @@ class StudentPortalController extends Controller
             'submission_url' => trim((string) ($data['submission_url'] ?? '')),
         ]);
         return back()->with('success', 'Assignment submitted successfully.');
+    }
+
+    public function downloadResource(Request $request, string $id)
+    {
+        $student = $this->requireStudent($request);
+        $resource = LearningResourceStore::find($id);
+        abort_unless(
+            $resource && ($resource['is_active'] ?? true)
+            && ($resource['course_code'] ?? '') === ($student['course_code'] ?? '')
+            && ! empty($resource['file_path'])
+            && Storage::disk('local')->exists($resource['file_path']),
+            404
+        );
+        return Storage::disk('local')->download($resource['file_path'], $resource['file_name'] ?? 'study-material.pdf', [
+            'Content-Type' => 'application/pdf',
+        ]);
     }
 
     public function practiceTest(Request $request, string $id)
