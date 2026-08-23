@@ -26,12 +26,28 @@ class PracticeTestStore
     public static function installStarterSets(array $courseCodes): int
     {
         $allowed=array_flip(array_map('strtoupper',$courseCodes));
-        $installed=array_flip(array_filter(array_column(self::all(),'starter_key')));
+        $installed=collect(self::all())->filter(fn(array $test):bool=>!empty($test['starter_key']))->keyBy('starter_key');
         $count=0;
         foreach(StarterPracticeTests::all() as $test){
-            if(isset($allowed[strtoupper($test['course_code'])])&&!isset($installed[$test['starter_key']])){ self::add($test); $count++; }
+            if(!isset($allowed[strtoupper($test['course_code'])])) continue;
+            $current=$installed->get($test['starter_key']);
+            if($current){ self::syncStarterSet($current['id'],$test); }
+            else { self::add($test); $count++; }
         }
         return $count;
+    }
+
+    private static function syncStarterSet(string $id,array $definition): void
+    {
+        $items=self::all(); $changed=false;
+        foreach($items as &$item){
+            if(($item['id']??'')!==$id) continue;
+            $preserved=['id'=>$item['id'],'is_active'=>$item['is_active']??true,'created_at'=>$item['created_at']??now()->toIso8601String()];
+            $updated=array_merge($definition,$preserved);
+            if($item!==$updated){$item=$updated;$changed=true;}
+            break;
+        }
+        unset($item); if($changed) self::write(self::testsPath(),$items);
     }
 
     public static function add(array $data): array
