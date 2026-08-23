@@ -32,6 +32,14 @@ class LearningResourceStore
         return $item;
     }
 
+    public static function find(string $id): ?array
+    {
+        foreach (self::all() as $item) {
+            if (($item['id'] ?? '') === $id) return $item;
+        }
+        return null;
+    }
+
     public static function toggle(string $id): bool
     {
         return self::update($id, function (array $item): array {
