@@ -80,3 +80,8 @@ footer{background:#0f133d;border-top:6px solid var(--mci-gold)}.footer-logo{widt
 
 /* Distinct page hero: Online Admission */
 .admission-intro{position:relative;isolation:isolate;background:linear-gradient(90deg,#15145de8,#08603bcf),url('../images/page-heroes/admission-hero.webp') center/cover no-repeat;min-height:760px;display:flex;flex-direction:column;justify-content:center}.admission-intro:after{content:"ADMISSION";position:absolute;left:6%;bottom:4%;z-index:-1;color:#ffffff0b;font:900 clamp(60px,9vw,145px)/1 Georgia,serif}.admission-form-card{border-top:7px solid var(--mci-gold)}
+
+/* Homepage hero image focal-point correction */
+.hero-media>img{object-position:right center}
+@media(max-width:1100px){.hero-media>img{object-position:78% center}}
+@media(max-width:700px){.hero-media>img{object-position:74% center}}
