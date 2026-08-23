@@ -95,6 +95,7 @@ class StarterPracticeTests
 
         $sets=[];
         foreach($base as $test){
+            $bank=array_merge($test['questions'],self::extraQuestions($test['course_code']));
             foreach([
                 [1,'practice','Practice Test 1',10,15,40],
                 [2,'practice','Practice Test 2',10,15,40],
@@ -110,14 +111,50 @@ class StarterPracticeTests
                 $copy['assessment_weight']=$weight;
                 $copy['duration_minutes']=$minutes;
                 $copy['pass_percentage']=$pass;
-                $copy['questions']=array_values(array_map(function(array $question,int $index)use($test,$setNo):array{
+                $indexes=match($setNo){1=>[0,1,2,3,4],2=>[5,6,7,8,9],3=>[0,2,4,6,8],4=>[1,3,5,7,9],default=>range(0,9)};
+                $copy['questions']=array_values(array_map(function(int $bankIndex,int $index)use($test,$setNo,$bank):array{
+                    $question=$bank[$bankIndex];
                     $question['id']='starter-'.strtolower($test['course_code']).'-s'.$setNo.'-q'.($index+1);
                     return $question;
-                },$test['questions'],array_keys($test['questions'])));
+                },$indexes,array_keys($indexes)));
                 $sets[]=$copy;
             }
         }
         return $sets;
+    }
+
+    private static function extraQuestions(string $course): array
+    {
+        $items=[
+            'DCA'=>[
+                ['Spreadsheet में formula किस चिन्ह से शुरू होता है?','=','@','#','&','A'],['Database में एक row को क्या कहते हैं?','Field','Record','Query','Form','B'],['Mail Merge में variable data कहाँ रहता है?','Data source','Printer','Slide master','Browser cache','A'],['Presentation शुरू करने की सामान्य key कौन है?','F1','F3','F5','F9','C'],['Backup का मुख्य उद्देश्य क्या है?','Font बदलना','Data recovery','Internet speed','Screen brightness','B']],
+            'ADCA'=>[
+                ['Foreign key का काम क्या है?','Tables को relate करना','Font lock करना','File compress करना','Slide चलाना','A'],['Excel PivotTable किसलिए है?','Data summary','Photo crop','Virus scan','Email send','A'],['GST की local sale में सामान्यतः कौन-से tax लगते हैं?','केवल IGST','CGST और SGST','कोई tax नहीं','Custom duty','B'],['Algorithm क्या है?','Step-by-step solution','Hardware part','Image format','Accounting ledger','A'],['Project testing में invalid input क्यों जाँचा जाता है?','Error handling verify करने','Colour बदलने','File size बढ़ाने','Password share करने','A']],
+            'CCC'=>[
+                ['Operating system का उदाहरण कौन है?','Windows','Excel formula','JPEG','Keyboard','A'],['Ctrl+Z क्या करता है?','Undo','Print','Paste','Close','A'],['Phishing का उद्देश्य अक्सर क्या होता है?','Sensitive information चुराना','Typing सिखाना','Printer repair','Storage बढ़ाना','A'],['PDF का लाभ क्या है?','Layout share करने में स्थिर रहता है','केवल audio रखता है','Internet बनाता है','RAM बढ़ाता है','A'],['MFA किसे मजबूत करता है?','Account security','Screen colour','Printer speed','File name','A']],
+            'TALLY'=>[
+                ['Cash bank transfer के लिए कौन voucher है?','Sales','Contra','Purchase','Journal only','B'],['Profit and Loss report क्या दिखाती है?','Income और expenses','केवल passwords','Network devices','Page margins','A'],['Interstate taxable sale में सामान्यतः कौन tax है?','IGST','केवल SGST','केवल CGST','कोई नहीं','A'],['Stock item के लिए unit का उदाहरण क्या है?','Nos','Ledger','Voucher','Capital','A'],['Backup restore से पहले क्या जाँचना चाहिए?','सही company और backup file','Font colour','Mouse pad','Email subject','A']],
+            'EXCEL'=>[
+                ['COUNTIFS क्या करता है?','कई conditions पर count','Workbook delete','Chart print','Text translate','A'],['XLOOKUP का not_found argument किसलिए है?','Missing match का message','Sheet password','Colour scale','Macro recording','A'],['Data Validation list क्या बनाती है?','Dropdown','Pivot chart','New workbook','PDF','A'],['Power Query मुख्यतः किसलिए है?','Data import और transformation','Slide show','Photo painting','Email hosting','A'],['Control total का उद्देश्य क्या है?','Report reconciliation','Font selection','Internet login','Page break','A']],
+            'DTP'=>[
+                ['Raster image किससे बनी होती है?','Pixels','Ledgers','Cells formulas','Vouchers','A'],['Typography में leading क्या है?','Lines के बीच spacing','Page colour','Image crop','File password','A'],['Print design में safe margin क्यों है?','Text कटने से बचाने','Audio बढ़ाने','Internet जोड़ने','Layer merge करने','A'],['Logo के लिए कौन format scalable हो सकता है?','SVG','BMP only','TXT','MP3','A'],['Preflight कब किया जाता है?','Final print export से पहले','Typing शुरू होने से पहले ही केवल','Email login पर','Computer shutdown पर','A']],
+            'WEB'=>[
+                ['Semantic navigation के लिए कौन element है?','nav','bold','photo','database','A'],['CSS box model में क्या शामिल है?','Content padding border margin','केवल font','केवल image','केवल script','A'],['DOM क्या दर्शाता है?','Page document structure','Domain payment','Database password','Design output mode','A'],['Server-side validation क्यों जरूरी है?','Client checks bypass हो सकते हैं','Colour बदलने','Image resize','SEO title','A'],['.env file में सामान्यतः क्या रखा जाता है?','Environment secrets/config','Public logo','Article text','CSS colour only','A']],
+            'PYTHON'=>[
+                ['Dictionary किस प्रकार data रखती है?','Key-value pairs','केवल pixels','Slides','Rows without keys','A'],['range(5) में अंतिम value क्या होगी?','4','5','6','0 only','A'],['Function value वापस करने के लिए keyword क्या है?','return','print','class','input','A'],['File safely बंद करने के लिए कौन pattern उपयोगी है?','with open','while true','global only','break file','A'],['Exception handling के keywords कौन हैं?','try और except','if और else only','for और range','def और return','A']],
+            'DIGITAL'=>[
+                ['CPL का पूरा अर्थ क्या है?','Cost Per Lead','Click Page Limit','Customer Post Link','Campaign Profit Loss','A'],['CTA क्या है?','Call To Action','Content Traffic Audit','Click Time Average','Customer Tax Account','A'],['UTM parameter किसलिए है?','Campaign source tracking','Image editing','GST calculation','Hardware test','A'],['Local SEO में कौन उपयोगी है?','Accurate business profile','Hidden address','Keyword stuffing','Fake reviews','A'],['A/B test में मुख्यतः क्या बदलना चाहिए?','एक major variable','सब कुछ एक साथ','कोई measurement नहीं','Password','A']],
+            'HARDWARE'=>[
+                ['POST कब होता है?','Computer startup पर','Document print पर','Email send पर','Spreadsheet save पर','A'],['DNS का काम क्या है?','Name को IP से resolve करना','RAM बढ़ाना','Image crop','Voucher create','A'],['DHCP क्या देता है?','Automatic network settings','Printer ink','CPU speed','File password','A'],['ESD से बचाव क्यों जरूरी है?','Components damage से बचाने','Internet speed','Typing accuracy','GST return','A'],['ping command किसे test करती है?','Network reachability','Font size','Disk formatting only','Invoice tax','A']],
+            'AI'=>[
+                ['AI hallucination क्या है?','विश्वसनीय दिखने वाली गलत जानकारी','Hardware failure','Fast internet','Encrypted backup','A'],['Primary source का उदाहरण क्या है?','Official notification','Unknown forwarded message','Random comment','Unverified screenshot','A'],['Prompt में constraint क्यों दिया जाता है?','Output सीमा स्पष्ट करने','Password बताने','OTP लेने','Bias बढ़ाने','A'],['AI bias का अर्थ क्या है?','अनुचित झुकाव या असमान परिणाम','Backup copy','File format','Typing speed','A'],['Human review की जिम्मेदारी किसकी रहती है?','Output उपयोग करने वाले व्यक्ति की','केवल AI की','किसी की नहीं','Printer की','A']],
+            'DATA'=>[
+                ['Unique ID क्यों उपयोग होता है?','Record पहचानने','Font बदलने','Internet तेज करने','Slide बनाने','A'],['TRIM function क्या हटाती है?','Extra spaces','Formulas','Charts','Passwords','A'],['Mail subject कैसा होना चाहिए?','Specific और concise','Blank','केवल emoji','भ्रामक','A'],['Double-entry verification का उद्देश्य क्या है?','Data accuracy जाँचना','Accounting voucher बनाना','Image layer','Network route','A'],['Document version में final शब्द कब लगाना चाहिए?','Approval के बाद','पहले draft पर','हर copy पर','बिना review','A']],
+        ];
+        return array_map(fn(array $q,int $i):array=>[
+            'id'=>'starter-'.strtolower($course).'-extra-q'.($i+1),'prompt'=>$q[0],
+            'options'=>['A'=>$q[1],'B'=>$q[2],'C'=>$q[3],'D'=>$q[4]],'correct'=>$q[5],
+        ],$items[$course]??[],array_keys($items[$course]??[]));
     }
 
     private static function test(string $course,string $title,array $questions): array
