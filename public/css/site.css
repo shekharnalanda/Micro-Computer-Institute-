@@ -100,3 +100,7 @@ footer{background:#0f133d;border-top:6px solid var(--mci-gold)}.footer-logo{widt
 .enquiry-copy h2{color:#fff;text-decoration:none;margin:18px 0 20px;line-height:1.04}
 .enquiry-copy p{color:#e5e8ff!important;font-size:17px;line-height:1.8;max-width:520px}
 @media(max-width:900px){.enquiry-copy{min-height:360px;padding:42px 28px}.enquiry-copy h2{font-size:clamp(38px,10vw,58px)}}
+
+/* Laptop header correction: prevent crowded multi-line navigation */
+@media(max-width:1400px){.site-header{position:sticky;top:0;z-index:120}.mobile-menu-toggle{display:flex;margin-left:auto}.site-header nav{display:none;position:absolute;top:calc(100% + 1px);left:16px;right:16px;background:#fff;border:1px solid var(--line);border-top:5px solid var(--mci-green);border-radius:12px;padding:12px;box-shadow:0 20px 50px #06182e28;flex-direction:column;align-items:stretch;gap:3px;max-height:calc(100vh - 110px);overflow-y:auto}.site-header nav.open{display:flex}.site-header nav a{padding:12px 13px;border-radius:7px;font-size:14px}.site-header nav a:hover,.site-header nav a:focus-visible{background:#edf8f0;color:var(--mci-green)}.site-header>.pill{margin-left:14px}}
+@media(max-width:760px){.site-header>.pill{display:none}}
