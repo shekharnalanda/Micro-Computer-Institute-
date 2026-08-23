@@ -83,3 +83,12 @@ footer{background:#0f133d;border-top:6px solid var(--mci-gold)}.footer-logo{widt
 
 /* Homepage hero uses a pre-cropped image; keep natural center alignment */
 .hero-media>img{object-position:center center}
+
+/* Final homepage treatment: true full-width hero banner */
+.hero{display:block;min-height:650px;padding:96px clamp(28px,7vw,110px);background:linear-gradient(90deg,#fffdf7 0%,#fffdf7f5 33%,#fffdf777 52%,transparent 72%),url('../images/hero-computer-lab.webp') right center/cover no-repeat;overflow:hidden}
+.hero-copy{max-width:650px;position:relative;z-index:2}
+.hero-media{display:none!important}
+.hero h1{max-width:650px}
+.hero-copy>p{max-width:590px}
+@media(max-width:1100px){.hero{display:block;min-height:610px;padding:78px 6vw;background:linear-gradient(90deg,#fffdf7 0%,#fffdf7ed 45%,#fffdf759 72%),url('../images/hero-computer-lab.webp') 68% center/cover no-repeat}.hero-copy{max-width:58%}.hero h1{font-size:clamp(42px,6vw,66px)}}
+@media(max-width:760px){html,body{max-width:100%;overflow-x:hidden}.hero{min-height:720px;padding:50px 22px 360px;background:linear-gradient(180deg,#fffdf7 0%,#fffdf7f2 49%,transparent 70%),url('../images/hero-computer-lab.webp') 70% bottom/auto 390px no-repeat #eef7ef}.hero-copy{max-width:100%}.hero h1{font-size:clamp(40px,12vw,58px)}.proof{gap:18px}.proof strong{font-size:22px}}
