@@ -166,9 +166,9 @@ class AdmissionController extends Controller
 
     public function studentCards(Request $request)
     {
-        $ids = array_values(array_unique(array_slice((array) $request->query('ids', []), 0, 2)));
+        $ids = array_values(array_unique(array_slice((array) $request->input('ids', []), 0, 150)));
         $students = array_values(array_filter(array_map(fn ($id) => AdmissionStore::find((string) $id), $ids), fn ($item) => $item && ($item['status'] ?? '') === 'admitted'));
-        abort_if(empty($students), 422, 'Select one or two admitted students.');
+        abort_if(empty($students), 422, 'Select at least one admitted student.');
         $students = array_map(function (array $student): array {
             $student['course_record'] = Course::where('code', $student['course_code'] ?? '')->first();
             return $student;
