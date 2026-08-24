@@ -14,9 +14,9 @@
     <select name="student_status"><option value="">All student statuses</option>@foreach(['active','completed','discontinued'] as $status)<option value="{{ $status }}" @selected(request('student_status')===$status)>{{ ucfirst($status) }}</option>@endforeach</select>
     <button class="btn">Search</button><a href="{{ route('admin.students.index') }}">Clear</a>
 </form></section>
-<section class="panel"><div class="panel-title"><div><small>ADMITTED STUDENT RECORDS</small><h2>{{ $studentCount }} students</h2></div><div><form id="card-batch-form" method="get" action="{{ route('admin.students.cards') }}" target="_blank" style="display:inline"><button class="btn" type="submit">Print Selected ID Cards (Max 2)</button></form> <a href="{{ route('admin.admissions.index') }}">Admission workspace →</a></div></div>
+<section class="panel"><div class="panel-title"><div><small>ADMITTED STUDENT RECORDS</small><h2>{{ $studentCount }} students</h2></div><div><form id="card-batch-form" method="post" action="{{ route('admin.students.cards') }}" target="_blank" style="display:inline">@csrf <button class="btn" type="submit">Bulk Print Selected ID Cards</button></form> <a href="{{ route('admin.admissions.index') }}">Admission workspace →</a></div></div>
 @if(count($students))
-<div class="student-table-wrap"><table class="student-table"><thead><tr><th>Select</th><th>Student</th><th>Application / Roll</th><th>Course & Batch</th><th>Contact</th><th>Fee Status</th><th>Balance</th><th>Actions</th></tr></thead><tbody>
+<div class="student-table-wrap"><table class="student-table"><thead><tr><th><label style="white-space:nowrap"><input type="checkbox" id="select-all-id-cards"> Select All</label></th><th>Student</th><th>Application / Roll</th><th>Course & Batch</th><th>Contact</th><th>Fee Status</th><th>Balance</th><th>Actions</th></tr></thead><tbody>
 @foreach($students as $student)<tr>
 <td><input form="card-batch-form" type="checkbox" name="ids[]" value="{{ $student['id'] }}" aria-label="Select {{ $student['student_name'] }} for ID card"></td>
 <td><b>{{ $student['student_name'] }}</b>@if($student['is_demo']??false)<span class="badge">DEMO</span>@endif<small>{{ $student['guardian_name'] }} · {{ $student['city'] }}</small><span class="academic-status status-{{ $student['student_status'] ?? 'active' }}">{{ ucfirst($student['student_status'] ?? 'active') }}</span></td>
@@ -64,4 +64,5 @@
 </tbody></table></div>
 @else<div class="empty"><b>No admitted students found</b><p>Admission status को “Admitted” करने के बाद student यहाँ दिखाई देगा।</p><a href="{{ route('admin.admissions.index') }}">Open Admissions →</a></div>@endif
 </section>
+<script>document.getElementById("select-all-id-cards")?.addEventListener("change",function(){document.querySelectorAll('input[form="card-batch-form"][name="ids[]"]').forEach(box=>box.checked=this.checked);});</script>
 @endsection
