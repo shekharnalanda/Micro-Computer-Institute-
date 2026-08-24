@@ -110,6 +110,7 @@ class AdmissionStore
             $item['batch_time'] = $data['batch_time'] ?? null;
             $item['joining_date'] = $data['joining_date'] ?? null;
             $item['student_status'] = $data['student_status'] ?? 'active';
+            if (! empty($data['photo_path'])) $item['photo_path'] = $data['photo_path'];
             return $item;
         });
     }
