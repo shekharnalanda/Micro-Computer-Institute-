@@ -14,10 +14,11 @@
     <select name="student_status"><option value="">All student statuses</option>@foreach(['active','completed','discontinued'] as $status)<option value="{{ $status }}" @selected(request('student_status')===$status)>{{ ucfirst($status) }}</option>@endforeach</select>
     <button class="btn">Search</button><a href="{{ route('admin.students.index') }}">Clear</a>
 </form></section>
-<section class="panel"><div class="panel-title"><div><small>ADMITTED STUDENT RECORDS</small><h2>{{ $studentCount }} students</h2></div><a href="{{ route('admin.admissions.index') }}">Admission workspace →</a></div>
+<section class="panel"><div class="panel-title"><div><small>ADMITTED STUDENT RECORDS</small><h2>{{ $studentCount }} students</h2></div><div><form id="card-batch-form" method="get" action="{{ route('admin.students.cards') }}" target="_blank" style="display:inline"><button class="btn" type="submit">Print Selected ID Cards (Max 2)</button></form> <a href="{{ route('admin.admissions.index') }}">Admission workspace →</a></div></div>
 @if(count($students))
-<div class="student-table-wrap"><table class="student-table"><thead><tr><th>Student</th><th>Application / Roll</th><th>Course & Batch</th><th>Contact</th><th>Fee Status</th><th>Balance</th><th>Actions</th></tr></thead><tbody>
+<div class="student-table-wrap"><table class="student-table"><thead><tr><th>Select</th><th>Student</th><th>Application / Roll</th><th>Course & Batch</th><th>Contact</th><th>Fee Status</th><th>Balance</th><th>Actions</th></tr></thead><tbody>
 @foreach($students as $student)<tr>
+<td><input form="card-batch-form" type="checkbox" name="ids[]" value="{{ $student['id'] }}" aria-label="Select {{ $student['student_name'] }} for ID card"></td>
 <td><b>{{ $student['student_name'] }}</b>@if($student['is_demo']??false)<span class="badge">DEMO</span>@endif<small>{{ $student['guardian_name'] }} · {{ $student['city'] }}</small><span class="academic-status status-{{ $student['student_status'] ?? 'active' }}">{{ ucfirst($student['student_status'] ?? 'active') }}</span></td>
 <td><b>{{ $student['application_no'] }}</b><small>Roll: {{ $student['roll_no'] ?? 'Not assigned' }}</small><small>{{ \Carbon\Carbon::parse($student['joining_date'] ?? $student['created_at'])->format('d M Y') }}</small></td>
 <td><span class="course-tag">{{ $student['course_code'] }}</span><small>{{ $student['batch_name'] ?? 'Batch not assigned' }}</small><small>{{ $student['batch_time'] ?? $student['preferred_time'] ?: 'Timing not set' }}</small></td>
@@ -51,7 +52,8 @@
 </div>
 </dialog>
 <dialog class="student-record-dialog" id="student-{{ $student['id'] }}"><div class="dialog-head"><div><small>ACADEMIC RECORD</small><h2>{{ $student['student_name'] }}</h2></div><button type="button" onclick="this.closest('dialog').close()">×</button></div>
-<form class="form-grid" method="post" action="{{ route('admin.students.update',$student['id']) }}">@csrf @method('PATCH')
+<form class="form-grid" method="post" enctype="multipart/form-data" action="{{ route('admin.students.update',$student['id']) }}">@csrf @method('PATCH')
+<label>Student Photo<input type="file" name="photo" accept=".jpg,.jpeg,.png,.webp"><small>JPG/PNG/WebP, max 2 MB</small></label>
 <label>Roll Number<input name="roll_no" value="{{ $student['roll_no'] ?? '' }}" maxlength="40" placeholder="e.g. MCI-DCA-001"></label>
 <label>Joining Date<input type="date" name="joining_date" value="{{ $student['joining_date'] ?? '' }}"></label>
 <label>Batch Name<input name="batch_name" value="{{ $student['batch_name'] ?? '' }}" maxlength="100" placeholder="e.g. DCA Morning Batch"></label>
