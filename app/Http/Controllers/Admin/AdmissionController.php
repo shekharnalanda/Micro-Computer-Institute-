@@ -141,7 +141,8 @@ class AdmissionController extends Controller
         if ($request->hasFile('photo')) {
             $photo = $request->file('photo');
             $photoName = 'mci-student-'.now()->format('YmdHis').'-'.strtolower(\Illuminate\Support\Str::random(8)).'.'.$photo->getClientOriginalExtension();
-            $photo->move(public_path('uploads/student-photos'), $photoName);
+            if (! is_dir(public_path('uploads/student-photos'))) mkdir(public_path('uploads/student-photos'), 0755, true);
+        $photo->move(public_path('uploads/student-photos'), $photoName);
             $data['photo_path'] = 'uploads/student-photos/'.$photoName;
         }
         abort_unless(AdmissionStore::updateStudentRecord($id, $data), 404);
