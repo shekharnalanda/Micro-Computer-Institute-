@@ -40,6 +40,7 @@ class AdmissionController extends Controller
         unset($data['website']);
         $photo = $request->file('photo');
         $photoName = 'mci-student-'.now()->format('YmdHis').'-'.strtolower(\Illuminate\Support\Str::random(8)).'.'.$photo->getClientOriginalExtension();
+        if (! is_dir(public_path('uploads/student-photos'))) mkdir(public_path('uploads/student-photos'), 0755, true);
         $photo->move(public_path('uploads/student-photos'), $photoName);
         $data['photo_path'] = 'uploads/student-photos/'.$photoName;
         $course = Course::where('code', $data['course_code'])->firstOrFail();
