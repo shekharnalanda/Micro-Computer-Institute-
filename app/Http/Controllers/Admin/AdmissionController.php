@@ -136,7 +136,14 @@ class AdmissionController extends Controller
             'batch_time' => ['nullable','string','max:100'],
             'joining_date' => ['nullable','date'],
             'student_status' => ['required','in:active,completed,discontinued'],
+            'photo' => ['nullable','image','mimes:jpg,jpeg,png,webp','max:2048'],
         ]);
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $photoName = 'mci-student-'.now()->format('YmdHis').'-'.strtolower(\Illuminate\Support\Str::random(8)).'.'.$photo->getClientOriginalExtension();
+            $photo->move(public_path('uploads/student-photos'), $photoName);
+            $data['photo_path'] = 'uploads/student-photos/'.$photoName;
+        }
         abort_unless(AdmissionStore::updateStudentRecord($id, $data), 404);
 
         return back()->with('success', 'Student academic record updated.');
@@ -148,13 +155,25 @@ class AdmissionController extends Controller
         abort_unless($item && ($item['status'] ?? '') === 'admitted', 404);
         $student = $this->withFinancialDefaults([$item])[0];
 
+        $student['course_record'] = Course::where('code', $student['course_code'] ?? '')->first();
         return view('admin.students.card', [
-            'student' => $student,
-            'course' => Course::where('code', $student['course_code'] ?? '')->first(),
+            'students' => [$student],
             'settings' => SiteSettings::all(),
         ]);
     }
 
+
+    public function studentCards(Request $request)
+    {
+        $ids = array_values(array_unique(array_slice((array) $request->query('ids', []), 0, 2)));
+        $students = array_values(array_filter(array_map(fn ($id) => AdmissionStore::find((string) $id), $ids), fn ($item) => $item && ($item['status'] ?? '') === 'admitted'));
+        abort_if(empty($students), 422, 'Select one or two admitted students.');
+        $students = array_map(function (array $student): array {
+            $student['course_record'] = Course::where('code', $student['course_code'] ?? '')->first();
+            return $student;
+        }, $students);
+        return view('admin.students.card', ['students' => $students, 'settings' => SiteSettings::all()]);
+    }
 
     public function feeDues(Request $request)
     {
