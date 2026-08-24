@@ -95,7 +95,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/attendance-report',[AttendanceController::class,'monthly'])->name('attendance.report');
         Route::get('/attendance-report-export',[AttendanceController::class,'monthlyExport'])->name('attendance.report.export');
         Route::get('/students',[AdminAdmissionController::class,'students'])->name('students.index');
-        Route::get('/students/cards/print',[AdminAdmissionController::class,'studentCards'])->name('students.cards');
+        Route::post('/students/cards/print',[AdminAdmissionController::class,'studentCards'])->name('students.cards');
         Route::get('/students/{id}/card',[AdminAdmissionController::class,'studentCard'])->name('students.card');
         Route::patch('/students/{id}',[AdminAdmissionController::class,'updateStudent'])->name('students.update');
         Route::get('/admissions',[AdminAdmissionController::class,'index'])->name('admissions.index');
