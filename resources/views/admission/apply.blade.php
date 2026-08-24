@@ -4,8 +4,9 @@
 <section class="admission-form-card">@if(session('success'))<div class="application-success"><b>✓ Application received</b><p>Your Application Number is:</p><strong>{{ session('application_no') }}</strong><small>कृपया इस नंबर को सुरक्षित रखें।</small></div>@endif
 @if($errors->any())<div class="form-errors"><b>Please correct these details:</b><ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>@endif
 <div class="application-head"><small>STUDENT APPLICATION FORM</small><h2>Personal & course details</h2><p>Fields marked with * are required.</p></div>
-<form class="online-admission-form" method="post" action="{{ route('admission.store') }}">@csrf
+<form class="online-admission-form" method="post" action="{{ route('admission.store') }}" enctype="multipart/form-data">@csrf
 <label>Student Name / विद्यार्थी का नाम *<input name="student_name" value="{{ old('student_name') }}" required maxlength="100"></label>
+<label>Student Photo / विद्यार्थी का फोटो *<input type="file" name="photo" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" required><small>Passport-size, JPG/PNG/WebP, maximum 2 MB</small></label>
 <label>Date of Birth / जन्म तिथि *<input type="date" name="dob" value="{{ old('dob') }}" required></label>
 <label>Gender / लिंग *<select name="gender" required><option value="">Select</option><option @selected(old('gender')==='Male')>Male</option><option @selected(old('gender')==='Female')>Female</option><option @selected(old('gender')==='Other')>Other</option></select></label>
 <label>Parent/Guardian Name *<input name="guardian_name" value="{{ old('guardian_name') }}" required maxlength="100"></label>
