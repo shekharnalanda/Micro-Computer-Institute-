@@ -48,7 +48,7 @@ Route::post('/apply-online', [AdmissionController::class,'store'])->middleware('
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('/login',[AuthController::class,'showLogin'])->name('login');
-        Route::post('/login',[AuthController::class,'login'])->name('login.submit');
+        Route::post('/login',[AuthController::class,'login'])->middleware('throttle:5,1')->name('login.submit');
     });
     Route::middleware(['auth','admin'])->group(function () {
         Route::get('/',[DashboardController::class,'index'])->name('dashboard');
