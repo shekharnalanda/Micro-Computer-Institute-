@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enquiry;
+use App\Services\CentralSyncService;
 use App\Support\SiteSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class EnquiryController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request, CentralSyncService $centralSync)
     {
         $data = $request->validate([
             'name' => ['required','string','max:80'],
@@ -25,6 +26,21 @@ class EnquiryController extends Controller
             'name'=>$data['name'],'phone'=>$data['phone'],'email'=>$data['email'] ?? null,
             'city'=>$data['city'] ?? null,'course_code'=>$data['course'],
             'message'=>$data['message'] ?? null,'ip_address'=>$request->ip(),
+        ]);
+
+        $centralSync->enquiry([
+            'business_code' => config('services.mci_central.business_code'),
+            'source_reference_id' => 'mci-enquiry-'.$enquiry->id,
+            'source_site' => config('app.url', 'https://mciedu.com'),
+            'name' => $enquiry->name,
+            'phone' => $enquiry->phone,
+            'email' => $enquiry->email,
+            'subject' => 'Course Enquiry: '.$enquiry->course_code,
+            'message' => $enquiry->message ?: 'Course information requested.',
+            'category' => 'general',
+            'course_service' => $enquiry->course_code,
+            'priority' => 'normal',
+            'submitted_at' => $enquiry->created_at?->toIso8601String(),
         ]);
 
         try {
