@@ -33,6 +33,11 @@ class EnquiryController extends Controller
                 $mail->to($recipient)->subject("New MCI Enquiry: {$enquiry->course_code}");
                 if ($enquiry->email) $mail->replyTo($enquiry->email, $enquiry->name);
             });
+            if ($enquiry->email) {
+                Mail::raw("Dear {$enquiry->name},\n\nThank you for contacting Micro Computer Institute. We have received your enquiry regarding {$enquiry->course_code}. Our team will contact you shortly.\n\nRegards,\nMicro Computer Institute\nMCI Campus, Quamruddin Ganj, Bihar Sharif, Nalanda - 803101\nPhone: 7004773247, 9334779133\nWebsite: https://mciedu.com", function ($mail) use ($enquiry) {
+                    $mail->to($enquiry->email, $enquiry->name)->subject("We received your enquiry - Micro Computer Institute");
+                });
+            }
         } catch (\Throwable $e) {
             report($e);
         }
