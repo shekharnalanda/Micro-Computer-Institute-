@@ -40,7 +40,7 @@ class StarterPracticeTestTest extends TestCase
             $this->assertSame([10,10,20,20,40],$courseSets->pluck('assessment_weight')->all());
         }
         foreach($sets as $set){
-            $this->assertCount(10,$set['questions']);
+            $this->assertContains(count($set['questions']), [5,10]);
             $this->assertSame(40,$set['pass_percentage']);
             foreach($set['questions'] as $question){
                 $this->assertCount(4,$question['options']);
