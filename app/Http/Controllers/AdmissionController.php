@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Services\CentralSyncService;
 use App\Support\AdmissionStore;
 use App\Support\SiteSettings;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class AdmissionController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, CentralSyncService $centralSync)
     {
         $data = $request->validate([
             'student_name' => ['required','string','max:100'],
@@ -48,6 +49,28 @@ class AdmissionController extends Controller
         $data['course_fee_note'] = $course->fee_note;
         $data['ip_address'] = $request->ip();
         $application = AdmissionStore::add($data);
+
+        $centralSync->admission([
+            'business_code' => config('services.mci_central.business_code'),
+            'source_reference_id' => 'mci-admission-'.$application['application_no'],
+            'source_site' => config('app.url', 'https://mciedu.com'),
+            'application_reference' => $application['application_no'],
+            'applicant_name' => $application['student_name'],
+            'phone' => $application['phone'],
+            'email' => $application['email'] ?? null,
+            'course_program' => $application['course_code'],
+            'status' => $application['status'] ?? 'new',
+            'payment_status' => $application['payment_status'] ?? null,
+            'submitted_at' => now()->toIso8601String(),
+            'metadata' => [
+                'guardian_name' => $application['guardian_name'] ?? null,
+                'city' => $application['city'] ?? null,
+                'qualification' => $application['qualification'] ?? null,
+                'preferred_time' => $application['preferred_time'] ?? null,
+                'course_fee' => $application['course_fee'] ?? null,
+                'course_fee_note' => $application['course_fee_note'] ?? null,
+            ],
+        ]);
 
         try {
             $recipient = SiteSettings::get('email', config('mail.enquiry_to'));
