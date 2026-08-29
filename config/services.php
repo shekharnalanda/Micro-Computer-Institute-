@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'mci_central' => [
+        'enabled' => env('MCI_CENTRAL_SYNC_ENABLED', false),
+        'url' => env('MCI_CENTRAL_URL', 'https://mciedu.in'),
+        'token' => env('MCI_CENTRAL_TOKEN'),
+        'business_code' => env('MCI_CENTRAL_BUSINESS_CODE', 'micro-computer-institute'),
+    ],
+
 ];
