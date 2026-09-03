@@ -104,3 +104,11 @@ footer{background:#0f133d;border-top:6px solid var(--mci-gold)}.footer-logo{widt
 /* Laptop header correction: prevent crowded multi-line navigation */
 @media(max-width:1400px){.site-header{position:sticky;top:0;z-index:120}.mobile-menu-toggle{display:flex;margin-left:auto}.site-header nav{display:none;position:absolute;top:calc(100% + 1px);left:16px;right:16px;background:#fff;border:1px solid var(--line);border-top:5px solid var(--mci-green);border-radius:12px;padding:12px;box-shadow:0 20px 50px #06182e28;flex-direction:column;align-items:stretch;gap:3px;max-height:calc(100vh - 110px);overflow-y:auto}.site-header nav.open{display:flex}.site-header nav a{padding:12px 13px;border-radius:7px;font-size:14px}.site-header nav a:hover,.site-header nav a:focus-visible{background:#edf8f0;color:var(--mci-green)}.site-header>.pill{margin-left:14px}}
 @media(max-width:760px){.site-header>.pill{display:none}}
+
+/* MCI_COMPACT_HERO_V1 */
+.hero{min-height:580px;padding-top:50px;padding-bottom:50px}
+.hero-media{height:410px;overflow:hidden;border-radius:160px 24px 160px 24px}
+.hero-media>img{width:100%;height:100%;object-fit:cover;object-position:center 48%}
+@media(max-width:1100px){.hero-media{height:360px}}
+@media(max-width:760px){.hero{padding-top:42px;padding-bottom:42px}.hero-media{height:270px;border-radius:80px 12px 80px 12px}}
+@media(max-width:480px){.hero-media{height:235px}}

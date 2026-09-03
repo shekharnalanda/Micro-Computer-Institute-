@@ -9,7 +9,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Micro Computer Institute">
 <meta name="twitter:description" content="Micro Computer Institute — practical bilingual computer courses, skill development and career support in Bihar Sharif, Nalanda.">
-<meta name="twitter:image" content="https://mciedu.com/images/mci-logo.webp"><link rel="stylesheet" href="{{ asset('css/site.css') }}?v=mci-header-fix-v6">@verbatim
+<meta name="twitter:image" content="https://mciedu.com/images/mci-logo.webp"><link rel="stylesheet" href="{{ asset('css/site.css') }}?v=mci-hero-crop-v1">@verbatim
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
