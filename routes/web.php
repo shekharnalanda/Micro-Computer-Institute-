@@ -28,6 +28,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentPortalController;
 use Illuminate\Support\Facades\Route;
 
+
+/* MCI_PWA_DYNAMIC_ASSETS */
+Route::get('/manifest.webmanifest', [\App\Http\Controllers\PwaAssetController::class, 'manifest']);
+Route::get('/service-worker.js', [\App\Http\Controllers\PwaAssetController::class, 'serviceWorker']);
+Route::get('/images/app-icon-192.png', [\App\Http\Controllers\PwaAssetController::class, 'icon192']);
+Route::get('/images/app-icon-512.png', [\App\Http\Controllers\PwaAssetController::class, 'icon512']);
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::post('/enquiry', [EnquiryController::class,'store'])->middleware('throttle:10,1')->name('enquiry.store');
 Route::get('/certificate/verify', [CertificateVerificationController::class,'index'])->name('certificates.verify');
