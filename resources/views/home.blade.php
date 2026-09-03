@@ -17,6 +17,7 @@
 <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
 <link rel="apple-touch-icon" href="{{ asset('images/app-icon-192.png') }}">
 <link rel="stylesheet" href="{{ asset('css/site.css') }}?v=mci-pwa-footer-v2">@verbatim
+<link rel="stylesheet" href="{{ asset('css/mci-app-footer-v3.css') }}?v=3">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -130,4 +131,4 @@ $mciCourses = $courses->map(function ($course) {
     ];
 })->values();
 @endphp
-<script>window.MCI_COURSES = @json($mciCourses);</script><script src="{{ asset('js/navigation.js') }}"></script><script src="{{ asset('js/site.js') }}"></script><script src="{{ asset('js/install-app.js') }}?v=2"></script></body></html>
+<script>window.MCI_COURSES = @json($mciCourses);</script><script src="{{ asset('js/navigation.js') }}"></script><script src="{{ asset('js/site.js') }}"></script><script src="{{ asset('js/mci-app-installer-v3.js') }}?v=3"></script></body></html>
