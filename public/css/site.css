@@ -114,12 +114,7 @@ footer{background:#0f133d;border-top:6px solid var(--mci-gold)}.footer-logo{widt
 @media(max-width:480px){.hero-media{height:235px}}
 
 /* Installable MCI app footer */
-footer{grid-template-columns:minmax(240px,1fr) minmax(300px,auto) minmax(190px,auto)}
-.footer-app{justify-self:end;display:grid;gap:7px;min-width:190px}
-.footer-app>span{color:#91a8bc;font-size:9px;font-weight:900;letter-spacing:1.5px}
-.footer-app button{border:1px solid #ffffff42;border-radius:9px;padding:12px 17px;background:linear-gradient(135deg,var(--mci-green),#0a7b4c);color:#fff;font-weight:900;cursor:pointer;box-shadow:0 9px 24px #0003}
-.footer-app button:hover,.footer-app button:focus-visible{transform:translateY(-2px);background:#0b8553}
-.footer-app button:disabled{cursor:default;opacity:.72;transform:none}
-.footer-app small{color:#8fa4b8;font-size:9px}
-@media(max-width:1100px){footer{grid-template-columns:1fr auto}.footer-links{grid-column:1/-1}.footer-app{grid-column:2;grid-row:1}}
-@media(max-width:760px){footer{grid-template-columns:1fr}.footer-app{grid-column:1;grid-row:auto;justify-self:stretch}.footer-app button{width:100%}footer>small{grid-column:1}}
+footer{grid-template-columns:minmax(280px,1.15fr) minmax(210px,.75fr) minmax(340px,1fr);grid-template-areas:"brand app links" "copy copy copy";column-gap:46px}
+.footer-brand{grid-area:brand}.footer-links{grid-area:links;justify-self:end;justify-content:flex-end;flex-wrap:wrap;max-width:430px;row-gap:12px}.footer-app{grid-area:app;align-self:center;display:grid;gap:8px;width:100%;max-width:235px}.footer-app>span{color:#9eb2c5;font-size:9px;font-weight:900;letter-spacing:1.55px}.footer-app button{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;border:1px solid #ffffff45;border-radius:12px;padding:13px 16px;background:linear-gradient(135deg,var(--mci-green),#087247);color:#fff;font-weight:900;cursor:pointer;box-shadow:0 10px 26px #0004;transition:transform .2s,background .2s}.footer-app button b{font-size:18px;line-height:1}.footer-app button:hover,.footer-app button:focus-visible{transform:translateY(-2px);background:#0b8553}.footer-app small{min-height:22px;color:#9eb2c5;font-size:10px;line-height:1.45}footer>small{grid-area:copy}
+@media(max-width:1100px){footer{grid-template-columns:1fr minmax(210px,260px);grid-template-areas:"brand app" "links links" "copy copy"}.footer-links{justify-self:start;justify-content:flex-start;max-width:none}.footer-app{justify-self:end}}
+@media(max-width:760px){footer{grid-template-columns:1fr;grid-template-areas:"brand" "app" "copy"}.footer-app{justify-self:stretch;max-width:none}.footer-app button{max-width:320px}.footer-links{display:none}}

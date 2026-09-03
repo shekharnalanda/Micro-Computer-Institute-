@@ -5,9 +5,11 @@
 
   let installPrompt = null;
   const standalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+  const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isAndroid = /android/i.test(navigator.userAgent);
 
   if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));
+    window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js?v=2").catch(() => {}));
   }
 
   if (standalone) {
@@ -19,7 +21,7 @@
   window.addEventListener("beforeinstallprompt", event => {
     event.preventDefault();
     installPrompt = event;
-    button.disabled = false;
+    help.textContent = "Ready to install on this device";
   });
 
   button.addEventListener("click", async () => {
@@ -31,10 +33,15 @@
       return;
     }
 
-    const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
-    help.textContent = isIos
-      ? "Safari: Share → Add to Home Screen"
-      : "Browser menu खोलें और Install app चुनें";
+    if (isIos) {
+      help.textContent = "Safari में Share ⤴ दबाएँ, फिर Add to Home Screen चुनें";
+      button.innerHTML = "Add to Home Screen <b aria-hidden=\"true\">＋</b>";
+      return;
+    }
+
+    help.textContent = isAndroid
+      ? "Chrome menu ⋮ में Add to Home screen या Install app चुनें"
+      : "Chrome/Edge menu में Install Micro Computer Institute चुनें";
   });
 
   window.addEventListener("appinstalled", () => {
