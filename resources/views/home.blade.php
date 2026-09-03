@@ -17,7 +17,6 @@
 <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
 <link rel="apple-touch-icon" href="{{ asset('images/app-icon-192.png') }}">
 <link rel="stylesheet" href="{{ asset('css/site.css') }}?v=mci-pwa-footer-v2">
-<link rel="stylesheet" href="{{ asset('css/mci-cnet-installer-final.css') }}?v=1">
 @verbatim
 <script type="application/ld+json">
 {
@@ -86,6 +85,96 @@
 @media(max-width:1100px){.lab{padding-top:44px!important;padding-bottom:44px!important}.lab>div:last-child{max-width:none}.lab-photo img{height:430px!important}}
 @media(max-width:700px){.lab{padding-top:30px!important;padding-bottom:30px!important;gap:30px!important}.lab h2{font-size:clamp(34px,10vw,44px)!important;letter-spacing:-1px!important}.lab-photo img{height:330px!important}}
 </style>
+<style id="MCI_CNET_INSTALLER_INLINE_FINAL">
+footer{
+    display:grid!important;
+    grid-template-columns:minmax(300px,1.1fr) auto minmax(480px,1.4fr)!important;
+    grid-template-areas:
+        "brand actions links"
+        "copy copy copy"!important;
+    column-gap:34px!important;
+    row-gap:28px!important;
+    align-items:center!important
+}
+.footer-brand{grid-area:brand!important}
+.footer-actions{
+    grid-area:actions!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:10px!important;
+    white-space:nowrap!important
+}
+.footer-actions button,
+.footer-actions a{
+    appearance:none!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    min-height:44px!important;
+    border:1px solid rgba(255,255,255,.28)!important;
+    border-radius:12px!important;
+    padding:11px 17px!important;
+    background:linear-gradient(135deg,#0a965c,#087247)!important;
+    color:#fff!important;
+    font:800 13px/1.2 Arial,sans-serif!important;
+    text-decoration:none!important;
+    cursor:pointer!important;
+    box-shadow:0 9px 22px rgba(0,0,0,.25)!important
+}
+.footer-actions a{
+    background:transparent!important;
+    box-shadow:none!important
+}
+.footer-actions button:disabled{
+    background:#536778!important;
+    cursor:default!important
+}
+.footer-links{
+    grid-area:links!important;
+    display:flex!important;
+    justify-self:end!important;
+    justify-content:flex-end!important;
+    flex-wrap:wrap!important;
+    gap:14px 22px!important
+}
+footer>small{grid-area:copy!important}
+
+@media(max-width:1100px){
+    footer{
+        grid-template-columns:1fr auto!important;
+        grid-template-areas:
+            "brand actions"
+            "links links"
+            "copy copy"!important
+    }
+    .footer-links{
+        justify-self:start!important;
+        justify-content:flex-start!important
+    }
+}
+
+@media(max-width:760px){
+    footer{
+        grid-template-columns:1fr!important;
+        grid-template-areas:
+            "brand"
+            "actions"
+            "copy"!important;
+        gap:20px!important
+    }
+    .footer-actions{
+        width:100%!important;
+        flex-direction:column!important;
+        align-items:stretch!important
+    }
+    .footer-actions button,
+    .footer-actions a{
+        width:100%!important;
+        max-width:340px!important
+    }
+    .footer-links{display:none!important}
+}
+</style>
 </head><body><main>
 <header class="site-header"><a class="brand" href="#home"><img class="brand-logo" src="{{ asset('images/mci-logo.webp') }}" alt="MCI logo"><span><strong>Micro Computer</strong><small>Institute</small></span></a><button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-expanded="false" aria-controls="siteNavigation" aria-label="Open navigation"><span></span><span></span><span></span></button><nav id="siteNavigation"><a href="#home">Home</a><a href="#courses">Courses</a><a href="#notices">Notices</a><a href="#gallery">Gallery</a><a href="#jobs">Job Search</a><a href="{{ route('certificates.verify') }}">Verify Certificate</a><a href="{{ route('student.login') }}">Student Login</a><a href="#enquiry">Enquiry</a><a class="admin-nav-link" href="{{ route('admin.login') }}">Admin Login</a></nav><a class="pill" href="{{ route('admission.create') }}">Apply Online ↗</a></header>
 <section class="hero" id="home"><div class="hero-copy"><div class="eyebrow">● {{ $settings['admission_notice'] }}</div><h1>{{ $settings['hero_title'] }}<br><em>{{ $settings['hero_highlight'] }}</em></h1><p>{{ $settings['hero_text_en'] }}</p><p class="hi">{{ $settings['hero_text_hi'] }}</p><div class="actions"><a class="primary" href="#courses">Explore Courses →</a><a class="secondary" href="#jobs">⌕ Find Jobs</a></div><div class="proof"><div><strong>{{ $courses->count() }}+</strong><span>Career Courses</span></div><div><strong>{{ $settings['highlight_two_value'] }}</strong><span>{{ $settings['highlight_two_label'] }}</span></div><div><strong>{{ $settings['highlight_three_value'] }}</strong><span>{{ $settings['highlight_three_label'] }}</span></div></div></div><div class="hero-media"><img src="{{ asset('images/hero-computer-lab.webp') }}?v=mci-full-banner-v4" alt="Students learning in a computer lab"><div class="float top">● <span><b>Practical First</b><small>Learn by doing</small></span></div><div class="float bottom">⌁ <span><b>Career Support</b><small>Skills to opportunities</small></span></div></div></section>
@@ -132,5 +221,60 @@ $mciCourses = $courses->map(function ($course) {
     ];
 })->values();
 @endphp
-<script>window.MCI_COURSES = @json($mciCourses);</script><script src="{{ asset('js/navigation.js') }}"></script><script src="{{ asset('js/site.js') }}"></script><script src="{{ asset('js/app-install.js') }}?v=1"></script>
+<script>window.MCI_COURSES = @json($mciCourses);</script><script src="{{ asset('js/navigation.js') }}"></script><script src="{{ asset('js/site.js') }}"></script><script id="MCI_CNET_INSTALLER_INLINE_FINAL">
+(() => {
+    const button = document.getElementById('installAppButton');
+    if (!button) return;
+
+    let promptEvent = null;
+
+    const standalone = () =>
+        window.matchMedia('(display-mode: standalone)').matches ||
+        window.navigator.standalone === true;
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js', {scope: '/'})
+            .catch(error => console.error('MCI service worker:', error));
+    }
+
+    if (standalone()) {
+        button.textContent = '✓ MCI App Installed';
+        button.disabled = true;
+        return;
+    }
+
+    window.addEventListener('beforeinstallprompt', event => {
+        event.preventDefault();
+        promptEvent = event;
+        button.textContent = '⬇ Install MCI App';
+        button.hidden = false;
+    });
+
+    window.addEventListener('appinstalled', () => {
+        promptEvent = null;
+        button.textContent = '✓ MCI App Installed';
+        button.disabled = true;
+    });
+
+    button.addEventListener('click', async () => {
+        if (standalone()) return;
+
+        if (promptEvent) {
+            promptEvent.prompt();
+            const choice = await promptEvent.userChoice;
+
+            if (choice.outcome === 'accepted') {
+                button.textContent = 'Installing MCI App…';
+            }
+
+            promptEvent = null;
+            return;
+        }
+
+        alert(
+            'Chrome के ऊपर ⋮ menu खोलें और “Install app” या “Add to Home screen” चुनें।'
+        );
+    });
+})();
+</script>
 </body></html>
