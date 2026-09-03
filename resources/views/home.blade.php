@@ -52,6 +52,15 @@
 @media(max-width:900px){.enquiry{padding-top:40px!important;padding-bottom:40px!important}.enquiry-copy{padding:32px!important}}
 @media(max-width:600px){.enquiry{padding-top:30px!important;padding-bottom:30px!important}.enquiry-copy{padding:26px!important}.enquiry-copy h2{font-size:clamp(36px,11vw,48px)!important}}
 </style>
+<style id="MCI_COMPACT_CAREER_V1">
+.jobs{padding-top:52px!important;padding-bottom:52px!important;min-height:auto!important;align-items:center!important}
+.job-intro h2{margin-top:14px!important;margin-bottom:18px!important}
+.job-intro>p{margin-top:0!important;margin-bottom:20px!important}
+.job-intro>img{margin-top:18px!important}
+.job-panel{align-self:center!important}
+@media(max-width:1100px){.jobs{padding-top:44px!important;padding-bottom:44px!important;gap:38px!important}}
+@media(max-width:700px){.jobs{padding-top:32px!important;padding-bottom:32px!important;gap:28px!important}.job-intro h2{font-size:clamp(40px,12vw,54px)!important}}
+</style>
 </head><body><main>
 <header class="site-header"><a class="brand" href="#home"><img class="brand-logo" src="{{ asset('images/mci-logo.webp') }}" alt="MCI logo"><span><strong>Micro Computer</strong><small>Institute</small></span></a><button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-expanded="false" aria-controls="siteNavigation" aria-label="Open navigation"><span></span><span></span><span></span></button><nav id="siteNavigation"><a href="#home">Home</a><a href="#courses">Courses</a><a href="#notices">Notices</a><a href="#gallery">Gallery</a><a href="#jobs">Job Search</a><a href="{{ route('certificates.verify') }}">Verify Certificate</a><a href="{{ route('student.login') }}">Student Login</a><a href="#enquiry">Enquiry</a><a class="admin-nav-link" href="{{ route('admin.login') }}">Admin Login</a></nav><a class="pill" href="{{ route('admission.create') }}">Apply Online ↗</a></header>
 <section class="hero" id="home"><div class="hero-copy"><div class="eyebrow">● {{ $settings['admission_notice'] }}</div><h1>{{ $settings['hero_title'] }}<br><em>{{ $settings['hero_highlight'] }}</em></h1><p>{{ $settings['hero_text_en'] }}</p><p class="hi">{{ $settings['hero_text_hi'] }}</p><div class="actions"><a class="primary" href="#courses">Explore Courses →</a><a class="secondary" href="#jobs">⌕ Find Jobs</a></div><div class="proof"><div><strong>{{ $courses->count() }}+</strong><span>Career Courses</span></div><div><strong>{{ $settings['highlight_two_value'] }}</strong><span>{{ $settings['highlight_two_label'] }}</span></div><div><strong>{{ $settings['highlight_three_value'] }}</strong><span>{{ $settings['highlight_three_label'] }}</span></div></div></div><div class="hero-media"><img src="{{ asset('images/hero-computer-lab.webp') }}?v=mci-full-banner-v4" alt="Students learning in a computer lab"><div class="float top">● <span><b>Practical First</b><small>Learn by doing</small></span></div><div class="float bottom">⌁ <span><b>Career Support</b><small>Skills to opportunities</small></span></div></div></section>
