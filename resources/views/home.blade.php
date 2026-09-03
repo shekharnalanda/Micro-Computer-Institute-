@@ -16,8 +16,9 @@
 <meta name="apple-mobile-web-app-title" content="MCI">
 <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
 <link rel="apple-touch-icon" href="{{ asset('images/app-icon-192.png') }}">
-<link rel="stylesheet" href="{{ asset('css/site.css') }}?v=mci-pwa-footer-v2">@verbatim
+<link rel="stylesheet" href="{{ asset('css/site.css') }}?v=mci-pwa-footer-v2">
 <link rel="stylesheet" href="{{ asset('css/mci-app-footer-v3.css') }}?v=3">
+@verbatim
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
