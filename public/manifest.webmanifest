@@ -1,16 +1,25 @@
 {
-  "name": "Micro Computer Institute",
-  "short_name": "MCI",
-  "description": "Courses, admission, enquiries and student services from Micro Computer Institute.",
-  "id": "/",
-  "start_url": "/?source=installed_app",
-  "scope": "/",
-  "display": "standalone",
-  "background_color": "#fffdf3",
-  "theme_color": "#075b38",
-  "orientation": "portrait-primary",
-  "icons": [
-    {"src": "/images/app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
-    {"src": "/images/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
-  ]
+    "name": "Micro Computer Institute",
+    "short_name": "MCI",
+    "description": "Micro Computer Institute student services and course information.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#078a50",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/images/app-icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/images/app-icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
 }
