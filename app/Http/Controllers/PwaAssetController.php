@@ -50,4 +50,15 @@ class PwaAssetController extends Controller
             ]
         );
     }
+
+    public function guidedLabImage(): BinaryFileResponse
+    {
+        return response()->file(
+            public_path('images/mci-guided-practical-lab.webp'),
+            [
+                'Content-Type' => 'image/webp',
+                'Cache-Control' => 'public, max-age=86400',
+            ]
+        );
+    }
 }

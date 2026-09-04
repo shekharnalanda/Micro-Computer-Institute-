@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 
 
 /* MCI_PWA_DYNAMIC_ASSETS */
+Route::get('/images/mci-guided-practical-lab.webp', [\App\Http\Controllers\PwaAssetController::class, 'guidedLabImage']);
 Route::get('/manifest.webmanifest', [\App\Http\Controllers\PwaAssetController::class, 'manifest']);
 Route::get('/service-worker.js', [\App\Http\Controllers\PwaAssetController::class, 'serviceWorker']);
 Route::get('/images/app-icon-192.png', [\App\Http\Controllers\PwaAssetController::class, 'icon192']);
